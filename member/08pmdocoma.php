@@ -145,93 +145,97 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
                         function addSet(){
                             stype = document.getElementById("stype").value
                             sqty = document.getElementById("sqty").value
+                            sstart = Array.from(String(document.getElementById("sstart").value).padStart(3,0), num => Number(num))
+                            send = Array.from(String(document.getElementById("send").value).padStart(3,0), num => Number(num))
+                            sstep = Array.from(String(document.getElementById("sstep").value.padStart(3,0)), num => Number(num))
                             if(stype && sqty){
-                                sstart = Array.from(String(document.getElementById("sstart").value).padStart(3,0), num => Number(num))
-                                send = Array.from(String(document.getElementById("send").value).padStart(3,0), num => Number(num))
-                                sstep = Array.from(String(document.getElementById("sstep").value.padStart(3,0)), num => Number(num))
-                                setlist1=[]
-                                setlist2=[]
-                                setlist3=[]
-                                if(sstep[0]==1 && sstart[0]!=send[0]){
-                                    newitem=sstart[0]
-                                    while(newitem<=send[0]){
-                                        setlist1.push(newitem)
-                                        newitem++
-                                    }
-                                    if (setlist1.length!=10) {
-                                        for (let index = 0; index < setlist1.length; index++) {
-                                            if (setlist1.length!=10) {
-                                                setlist1.unshift(0)
+                                if(sstart.length==3 && send.length==3){
+                                    setlist1=[]
+                                    setlist2=[]
+                                    setlist3=[]
+                                    if(sstep[0]==1 && sstart[0]!=send[0]){
+                                        newitem=sstart[0]
+                                        while(newitem<=send[0]){
+                                            setlist1.push(newitem)
+                                            newitem++
+                                        }
+                                        if (setlist1.length!=10) {
+                                            for (let index = 0; index < setlist1.length; index++) {
+                                                if (setlist1.length!=10) {
+                                                    setlist1.unshift(0)
+                                                }
+                                            }
+                                        }
+                                    }else{
+                                        if (setlist1.length!=10) {
+                                            for (let index = 0; index < 10; index++) {
+                                                if (setlist1.length!=10) {
+                                                    setlist1.unshift(send[0])
+                                                }
                                             }
                                         }
                                     }
-                                }else{
-                                    if (setlist1.length!=10) {
-                                        for (let index = 0; index < 10; index++) {
-                                            if (setlist1.length!=10) {
-                                                setlist1.unshift(send[0])
-                                            }
-                                        }
-                                    }
-                                }
 
-                                if(sstep[1]==1 && sstart[1]!=send[1]){
-                                    newitem=sstart[1]
-                                    while(newitem<=send[1]){
-                                        setlist2.push(newitem)
-                                        newitem++
-                                    }
-                                    if (setlist2.length!=10) {
-                                        for (let index = 0; index < setlist2.length; index++) {
-                                            if (setlist2.length!=10) {
-                                                setlist2.unshift(0)
+                                    if(sstep[1]==1 && sstart[1]!=send[1]){
+                                        newitem=sstart[1]
+                                        while(newitem<=send[1]){
+                                            setlist2.push(newitem)
+                                            newitem++
+                                        }
+                                        if (setlist2.length!=10) {
+                                            for (let index = 0; index < setlist2.length; index++) {
+                                                if (setlist2.length!=10) {
+                                                    setlist2.unshift(0)
+                                                }
+                                            }
+                                        }
+                                    }else{
+                                        if (setlist2.length!=10) {
+                                            for (let index = 0; index < 10; index++) {
+                                                if (setlist2.length!=10) {
+                                                    setlist2.unshift(send[1])
+                                                }
                                             }
                                         }
                                     }
-                                }else{
-                                    if (setlist2.length!=10) {
-                                        for (let index = 0; index < 10; index++) {
-                                            if (setlist2.length!=10) {
-                                                setlist2.unshift(send[1])
-                                            }
-                                        }
-                                    }
-                                }
 
-                                if(sstep[2]==1 && sstart[2]!=send[2]){
-                                    newitem=sstart[2]
-                                    while(newitem<=send[2]){
-                                        setlist3.push(newitem)
-                                        newitem++
-                                    }
-                                    if (setlist3.length!=10) {
-                                        for (let index = 0; index < setlist3.length; index++) {
-                                            if (setlist3.length!=10) {
-                                                setlist3.unshift(0)
+                                    if(sstep[2]==1 && sstart[2]!=send[2]){
+                                        newitem=sstart[2]
+                                        while(newitem<=send[2]){
+                                            setlist3.push(newitem)
+                                            newitem++
+                                        }
+                                        if (setlist3.length!=10) {
+                                            for (let index = 0; index < setlist3.length; index++) {
+                                                if (setlist3.length!=10) {
+                                                    setlist3.unshift(0)
+                                                }
+                                            }
+                                        }
+                                    }else{
+                                        if (setlist3.length!=10) {
+                                            for (let index = 0; index < 10; index++) {
+                                                if (setlist3.length!=10) {
+                                                    setlist3.unshift(send[2])
+                                                }
                                             }
                                         }
                                     }
+                                    newloop=0;
+                                    while(newloop<setlist1.length){
+                                        newtok = setlist1[newloop]+""+setlist2[newloop]+""+setlist3[newloop]
+                                        if(newtok!=0){
+                                            addlist(stype,newtok,sqty)
+                                        }
+                                        newloop++;
+                                    }
+                                    document.getElementById("send").value=""
+                                    document.getElementById("sstart").value=""
+                                    document.getElementById("sstep").value=""
+                                    $('#staticBackdrop').modal('hide');
                                 }else{
-                                    if (setlist3.length!=10) {
-                                        for (let index = 0; index < 10; index++) {
-                                            if (setlist3.length!=10) {
-                                                setlist3.unshift(send[2])
-                                            }
-                                        }
-                                    }
+                                    alert("Token must be three digit")
                                 }
-                                newloop=0;
-                                while(newloop<setlist1.length){
-                                    newtok = setlist1[newloop]+""+setlist2[newloop]+""+setlist3[newloop]
-                                    if(newtok!=0){
-                                        addlist(stype,newtok,sqty)
-                                    }
-                                    newloop++;
-                                }
-                                document.getElementById("send").value=""
-                                document.getElementById("sstart").value=""
-                                document.getElementById("sstep").value=""
-                                $('#staticBackdrop').modal('hide');
                             }else{
                                 alert("Select Token Type and Qty")
                             }
@@ -331,7 +335,7 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
                 </tbody>
             </table>
             <br>
-            <div style="display:flex;justify-content:space-between" class="mb-4">
+            <div class="mb-4 text-end">
                 <button class="btn btn-primary">Next</button>
             </div>
         </form>
