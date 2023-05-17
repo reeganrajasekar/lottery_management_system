@@ -49,7 +49,32 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
             <br>
             <div class="row">
                 <div class="col-6 text-start">
-                    <span class="btn btn-secondary" onclick="addBox()">Box</span>
+                    <span class="btn btn-secondary" onclick="addBoard()">All Board</span>
+                    <script>
+                        function addBoard(){
+                            onv = document.getElementById('token').value;
+                            onqty = document.getElementById('qty').value;
+                            if(onv && onqty){
+                                if (onv.length==2) {
+                                    allb = ["AB","BC","AC"]
+                                    allb.map((allbone)=>{
+                                        addlist(allbone,onv,onqty)
+                                    })
+                                }else if (onv.length==1) {
+                                    allb = ["A","B","C"]
+                                    allb.map((allbone)=>{
+                                        addlist(allbone,onv,onqty)
+                                    })
+                                }else{
+                                    alert("All Board Token Must be 2 or 3 digit")
+                                }
+                            }else{
+                                alert("Select Token and Qty")
+                            }
+                        }
+                    </script>
+                    <br><br>
+                    <span class="btn btn-warning" onclick="addBox()">Box</span>
                     <br><br>
                     <span class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Set</span>
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
