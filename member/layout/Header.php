@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <script src="/assets/js/moment.js"></script>
+    <script src="/assets/js/jspdf.min.js"></script>
   </head>
   <body>
     <div class="container-scroller">
@@ -28,8 +29,14 @@
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="/member/change.php">
+                  <i class="mdi mdi-key me-2 text-primary"></i>
+                  Change Password
+                </a>
                 <a class="dropdown-item" href="/">
-                  <i class="mdi mdi-logout me-2 text-primary"></i>Logout</a>
+                  <i class="mdi mdi-logout me-2 text-primary"></i>
+                  Logout
+                </a>
               </div>
             </li>
           </ul>

@@ -40,25 +40,61 @@ Type    : <script>document.write('<?php echo($time)?>')</script>
 <script>
 total = 0
 tickets = 0
-function val(id,count){
-    tickets+=parseInt(count)
-    if(id=="30"){
-        total+=30*count
-        return 30
+<?php
+if($time == "KL-03pm"){
+    ?>
+    function val(id,count){
+        tickets+=parseInt(count)
+        if(id=="110"){
+            total+=110*count
+            return 110
+        }
+        if(id=="30"){
+            total+=30*count
+            return 30
+        }
+        if(id=="60"){
+            total+=60*count
+            return 60
+        }
+        if(id=="70"){
+            total+=70*count
+            return 70
+        }
+        if(id=="AB" || id=="AC" || id=="BC" || id=="A" || id=="B" || id=="C"){
+            total+=13*count
+            return 13
+        }
     }
-    if(id=="70"){
-        total+=70*count
-        return 70
+    <?php
+}else{
+    ?>
+    function val(id,count){
+        tickets+=parseInt(count)
+        if(id=="30"){
+            total+=30*count
+            return 30
+        }
+        if(id=="60"){
+            total+=60*count
+            return 60
+        }
+        if(id=="70"){
+            total+=70*count
+            return 70
+        }
+        if(id=="AB" || id=="AC" || id=="BC" || id=="A" || id=="B" || id=="C"){
+            total+=12*count
+            return 12
+        }
     }
-    if(id=="AB" || id=="AC" || id=="BC" || id=="A" || id=="B" || id=="C"){
-        total+=12*count
-        return 12
-    }
+    <?php
 }
+?>
 for (i=0;i<data[0].length;i++) {
     document.write(`BU-${data[0][i].padEnd(3, ' ')}        ${data[1][i].padEnd(4, ' ')}         ${data[2][i]}  `)
     if(i+1!=data[0].length){
-        document.write('')
+        document.write('\n')
     }
     val(data[0][i],data[2][i])
 }

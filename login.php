@@ -18,6 +18,8 @@ if($result->num_rows>0){
         session_start();
         $_SESSION["memberid"]=$row["id"];
         $_SESSION["membername"]=$row["name"];
+        $_SESSION["membermobile"]=$row["mobile"];
+        $_SESSION["memberemail"]=$row["email"];
         header("Location:/member/home.php");
         die();
     }

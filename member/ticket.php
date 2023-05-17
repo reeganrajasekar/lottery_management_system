@@ -9,9 +9,13 @@
         </h4>
         <div class="row">
             <?php
+                date_default_timezone_set("Asia/Calcutta");
+                $date=date_create();
+                $newdate = date_format($date,"Y-m-d");
+
                 $memberid = $_SESSION["memberid"];
                 $results_per_page = 15;   
-                $query = "SELECT id FROM token WHERE memberid='$memberid'";  
+                $query = "SELECT id FROM token WHERE memberid='$memberid' AND DATE(reg_date)='$newdate'";  
                 $result = mysqli_query($conn, $query);  
                 $number_of_result = mysqli_num_rows($result);  
                 $number_of_page = ceil ($number_of_result / $results_per_page);  
@@ -24,7 +28,7 @@
     
                 $page_first_result = ($page-1) * $results_per_page; 
 
-                $sql = "SELECT * FROM token WHERE memberid='$memberid' ORDER BY id DESC LIMIT " . $page_first_result . ',' . $results_per_page;
+                $sql = "SELECT * FROM token WHERE memberid='$memberid' AND DATE(reg_date)='$newdate' ORDER BY id DESC LIMIT " . $page_first_result . ',' . $results_per_page;
                 $result = $conn->query($sql);
                 while ($row = $result->fetch_assoc()) {
             ?>
