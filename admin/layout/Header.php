@@ -38,8 +38,13 @@ if($_SESSION["admin"]=="u6rv9tb8pq89u"){
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="/admin/change.php">
+                  <i class="mdi mdi-key me-2 text-primary"></i>
+                  Change Password
+                </a>
                 <a class="dropdown-item" href="/admin">
-                  <i class="mdi mdi-logout me-2 text-primary"></i>Logout</a>
+                  <i class="mdi mdi-logout me-2 text-primary"></i>Logout
+                </a>
               </div>
             </li>
           </ul>

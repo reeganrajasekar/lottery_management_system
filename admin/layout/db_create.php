@@ -7,6 +7,7 @@ $sql = "CREATE TABLE IF NOT EXISTS member (
     mobile VARCHAR(500) NOT NULL UNIQUE,
     email VARCHAR(500) NOT NULL UNIQUE,
     password VARCHAR(500) NOT NULL,
+    data VARCHAR(500) NOT NULL,
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 if ($conn->query($sql) === TRUE) {
@@ -21,12 +22,24 @@ $sql = "CREATE TABLE IF NOT EXISTS token (
     token json NOT NULL,
     memberid INT(6) NOT NULL,
     membername VARCHAR(500) NOT NULL,
-    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (memberid) REFERENCES member(id)
+    data VARCHAR(500) NOT NULL,
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 if ($conn->query($sql) === TRUE) {
     echo "Table token created successfully<br>";
 } else {
     echo "Error creating table: token";
+}
+
+$sql = "CREATE TABLE IF NOT EXISTS admin (
+    id INT(6) AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(500) NOT NULL,
+    password VARCHAR(500) NOT NULL,
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)";
+if ($conn->query($sql) === TRUE) {
+    echo "Table Admin created successfully<br>";
+} else {
+    echo "Error creating table: admin";
 }
 ?>

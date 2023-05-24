@@ -17,7 +17,7 @@ if(isset($_POST["type"]) && isset($_POST["token"]) && isset($_POST["count"])){
     $membername = $_SESSION["membername"];
     $data = trim(addslashes(json_encode("[".$type.",".$token.",".$count."]")));
     $time=$_POST["time"];
-    $sql = "INSERT INTO token(time,token,memberid,membername) VALUES('$time','$data','$memberid','$membername');";
+    $sql = "INSERT INTO token(time,token,memberid,membername,data) VALUES('$time','$data','$memberid','$membername','OK');";
 
     try {
         $conn->query($sql);

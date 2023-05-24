@@ -7,7 +7,7 @@ try {
     $to = $_POST["to"];
     $memberid = $_POST["memberid"];
     $type = $_POST["type"];
-    $sql = "SELECT * FROM token WHERE data='OK' AND time='$type' AND memberid='$memberid' AND reg_date>'$from' AND reg_date<'$to'";
+    $sql = "SELECT * FROM token WHERE data='NOT' AND time='$type' AND memberid='$memberid' AND reg_date>'$from' AND reg_date<'$to'";
     $result = $conn->query($sql);
     $data=[];
     while($row = $result->fetch_assoc()){
@@ -241,7 +241,7 @@ data.map(t=>{
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>Entry Report</td>
+                        <td>Deleted Tokens Report</td>
                     </tr>
                     <tr>
                         <td></td>
@@ -488,7 +488,7 @@ data.map(t=>{
                     </script>
                     <?php 
                     }
-                    if($_POST["token"]=="BC" || $_POST["token"]=="all" || $_POST["token"]=="board"){ 
+                    if($_POST["token"]=="BC" || $_POST["token"]=="all"|| $_POST["token"]=="board"){ 
                     ?>
                     <!-- BC -->
                     <script>
@@ -766,7 +766,7 @@ function downloadCSVFile(csv_data) {
  var temp_link = document.createElement('a');
 
  // Download csv file
- temp_link.download = "<?php echo($memberid . "_" . $membername . "_" . $type . "_from_" . $from . "_to_" . $to)?>.csv";
+ temp_link.download = "<?php echo("Deleted Tokens _ ".$memberid . "_" . $membername . "_" . $type . "_from_" . $from . "_to_" . $to)?>.csv";
  var url = window.URL.createObjectURL(CSVFile);
  temp_link.href = url;
 

@@ -18,7 +18,7 @@
                 <h3 class="text-secondary text-center mb-4">Admin Login</h3>
                 <form class="pt-1" action="/admin/login.php" method="post">
                   <div class="form-group">
-                    <input type="email" name="email" required class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                    <input type="email" name="email" required class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
                   </div>
                   <div class="form-group">
                     <input type="password" name="password" required class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
@@ -27,6 +27,7 @@
                     <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">LOG IN</button>
                   </div>
                 </form>
+                <a class="text-end text-secondary pt-4 d-block" href="/admin/forget.php">Forget Password?</a>
               </div>
             </div>
           </div>
@@ -37,5 +38,21 @@
     <script src="/assets/js/off-canvas.js"></script>
     <script src="/assets/js/hoverable-collapse.js"></script>
     <script src="/assets/js/misc.js"></script>
+    <script>
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      if(urlParams.get('err')){
+        document.write("<div id='err' style='position:fixed;bottom:30px; right:30px;background-color:#FF0000;padding:10px;border-radius:10px;box-shadow:2px 2px 4px #aaa;color:white;font-weight:600'>"+urlParams.get('err')+"</div>")
+      }
+      setTimeout(()=>{
+          document.getElementById("err").style.display="none"
+      }, 3000)
+      if(urlParams.get('msg')){
+        document.write("<div id='msg' style='position:fixed;bottom:30px; right:30px;background-color:#4CAF50;padding:10px;border-radius:10px;box-shadow:2px 2px 4px #aaa;color:white;font-weight:600'>"+urlParams.get('msg')+"</div>")
+      }
+      setTimeout(()=>{
+          document.getElementById("msg").style.display="none"
+      }, 3000)
+  </script>
   </body>
 </html>

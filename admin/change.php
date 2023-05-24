@@ -12,9 +12,9 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-3"></div>
                 <div class="col-sm-12 col-lg-6">
-                    <form action="/member/action/change.php" method="post">
+                    <form action="/admin/action/change.php" method="post">
                         <div class="form-group">
-                            <input type="text" name="email" required class="form-control form-control-lg" id="exampleInputEmail1" placeholder="User Name">
+                            <input type="email" name="email" required class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <input type="password" name="oldpassword" required class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Old Password">

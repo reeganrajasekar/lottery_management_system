@@ -54,7 +54,6 @@
                     <label>To Datetime</label>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-4"></div>
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <div class="form-floating mb-3">
                     <select name="memberid" class="form-select" required>
@@ -74,13 +73,176 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <div class="form-floating mb-3">
-                    <select name="type" class="form-select" required>
+                    <select name="type" class="form-select" id="typeone" onchange="settone()" required>
                         <option value="" selected disabled>Select Type</option>
                         <option value="DO-01pm">Docoma - 01pm</option>
                         <option value="BU-02pm">Bhutan - 02pm</option>
                         <option value="KL-03pm">Kerala - 03pm</option>
                         <option value="BU-07pm">Bhutan - 07pm</option>
                         <option value="DO-08pm">Docoma - 08pm</option>
+                    </select>
+                    <label>Type</label>
+                </div>
+            </div>
+            <script>
+                function settone(){
+                    if (document.getElementById("typeone").value=="DO-08pm" || document.getElementById("typeone").value=="DO-01pm") {
+                        document.getElementById("tone").innerHTML=`
+                        <option value="" selected disabled>Select Type</option>
+                        <option value="all">All</option>
+                        <option value="board">Board</option>
+                        <option value="30">30</option>
+                        <option value="AB">AB</option>
+                        <option value="BC">BC</option>
+                        <option value="AC">AC</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        `
+                    } else if (document.getElementById("typeone").value=="BU-02pm" || document.getElementById("typeone").value=="BU-07pm") {
+                        document.getElementById("tone").innerHTML=`
+                        <option value="" selected disabled>Select Type</option>
+                        <option value="all">All</option>
+                        <option value="board">Board</option>
+                        <option value="70">70</option>
+                        <option value="30">30</option>
+                        <option value="AB">AB</option>
+                        <option value="BC">BC</option>
+                        <option value="AC">AC</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        `
+                    }else if (document.getElementById("typeone").value=="KL-03pm") {
+                        document.getElementById("tone").innerHTML=`
+                        <option value="" selected disabled>Select Type</option>
+                        <option value="all">All</option>
+                        <option value="board">Board</option>
+                        <option value="110">110</option>
+                        <option value="70">70</option>
+                        <option value="60">60</option>
+                        <option value="30">30</option>
+                        <option value="AB">AB</option>
+                        <option value="BC">BC</option>
+                        <option value="AC">AC</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        `
+                    }
+                }
+            </script>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                <div class="form-floating mb-3">
+                    <select name="token" id="tone" class="form-select" required>
+                        
+                    </select>
+                    <label>Type</label>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-3">
+                <div class="text-center">
+                    <button class="btn btn-primary h-100 mt-2">Download</button>
+                </div>
+            </div>
+        </form>
+        <br><br>
+        <form target="_blank" action="/admin/action/del.php" method="POST" class="row">
+            <h4 class="text-secondary mb-2">2 . Deleted Tickets Report:</h4>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                <div class="form-floating mb-3">
+                    <input required type="date" class="form-control bg-white"  name="from" placeholder="Date">
+                    <label>From Date</label>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                <div class="form-floating mb-3">
+                    <input required type="date" class="form-control bg-white"  name="to" placeholder="Date">
+                    <label>To Date</label>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                <div class="form-floating mb-3">
+                    <select name="memberid" class="form-select" required>
+                        <option value="" selected disabled>Select Member</option>
+                        <?php
+                        $sql = "SELECT name,id FROM member";
+                        $result = $conn->query($sql);
+                        while($row = $result->fetch_assoc()){
+                        ?>
+                        <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                    <label>Member</label>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                <div class="form-floating mb-3">
+                    <select name="type" class="form-select" id="typet" onchange="settt()" required>
+                        <option value="" selected disabled>Select Type</option>
+                        <option value="DO-01pm">Docoma - 01pm</option>
+                        <option value="BU-02pm">Bhutan - 02pm</option>
+                        <option value="KL-03pm">Kerala - 03pm</option>
+                        <option value="BU-07pm">Bhutan - 07pm</option>
+                        <option value="DO-08pm">Docoma - 08pm</option>
+                    </select>
+                    <label>Type</label>
+                </div>
+            </div>
+            <script>
+                function settt(){
+                    if (document.getElementById("typet").value=="DO-08pm" || document.getElementById("typet").value=="DO-01pm") {
+                        document.getElementById("tto").innerHTML=`
+                        <option value="" selected disabled>Select Type</option>
+                        <option value="all">All</option>
+                        <option value="board">Board</option>
+                        <option value="30">30</option>
+                        <option value="AB">AB</option>
+                        <option value="BC">BC</option>
+                        <option value="AC">AC</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        `
+                    } else if (document.getElementById("typet").value=="BU-02pm" || document.getElementById("typet").value=="BU-07pm") {
+                        document.getElementById("tto").innerHTML=`
+                        <option value="" selected disabled>Select Type</option>
+                        <option value="all">All</option>
+                        <option value="board">Board</option>
+                        <option value="70">70</option>
+                        <option value="30">30</option>
+                        <option value="AB">AB</option>
+                        <option value="BC">BC</option>
+                        <option value="AC">AC</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        `
+                    }else if (document.getElementById("typet").value=="KL-03pm") {
+                        document.getElementById("tto").innerHTML=`
+                        <option value="" selected disabled>Select Type</option>
+                        <option value="all">All</option>
+                        <option value="board">Board</option>
+                        <option value="110">110</option>
+                        <option value="70">70</option>
+                        <option value="60">60</option>
+                        <option value="30">30</option>
+                        <option value="AB">AB</option>
+                        <option value="BC">BC</option>
+                        <option value="AC">AC</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        `
+                    }
+                }
+            </script>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                <div class="form-floating mb-3">
+                    <select name="token" id="tto" class="form-select" required>
+                        
                     </select>
                     <label>Type</label>
                 </div>
@@ -130,7 +292,7 @@
                     <?php
                         $date = $_GET["date"];
                         $memberid = $_GET["memberid"];
-                        $sql = "SELECT token FROM token WHERE memberid='$memberid' AND time='DO-01pm' AND DATE(reg_date)='$date'";
+                        $sql = "SELECT token FROM token WHERE data='OK' AND memberid='$memberid' AND time='DO-01pm' AND DATE(reg_date)='$date'";
                         $result = $conn->query($sql);
                         $data = "[";
                         while ($row = $result->fetch_assoc()) {
@@ -226,7 +388,7 @@
 
                 <table style="font-size: 13px">
                     <?php
-                        $sql = "SELECT token FROM token WHERE memberid='$memberid' AND time='BU-02pm' AND DATE(reg_date)='$date'";
+                        $sql = "SELECT token FROM token WHERE data='OK' AND memberid='$memberid' AND time='BU-02pm' AND DATE(reg_date)='$date'";
                         $result = $conn->query($sql);
                         $data2 = "[";
                         while ($row = $result->fetch_assoc()) {
@@ -329,7 +491,7 @@
                 /n
                 <table style="font-size: 14px;">
                     <?php
-                        $sql = "SELECT token FROM token WHERE memberid='$memberid' AND time='KL-03pm' AND DATE(reg_date)='$date'";
+                        $sql = "SELECT token FROM token WHERE data='OK' AND memberid='$memberid' AND time='KL-03pm' AND DATE(reg_date)='$date'";
                         $result = $conn->query($sql);
                         $data3 = "[";
                         while ($row = $result->fetch_assoc()) {
@@ -447,7 +609,7 @@
 
                 <table style="font-size: 13px;">
                     <?php
-                        $sql = "SELECT token FROM token WHERE memberid='$memberid' AND time='BU-07pm' AND DATE(reg_date)='$date'";
+                        $sql = "SELECT token FROM token WHERE data='OK' AND memberid='$memberid' AND time='BU-07pm' AND DATE(reg_date)='$date'";
                         $result = $conn->query($sql);
                         $data7 = "[";
                         while ($row = $result->fetch_assoc()) {
@@ -551,7 +713,7 @@
                 /n
                 <table style="font-size: 14px;">
                     <?php
-                        $sql = "SELECT token FROM token WHERE memberid='$memberid' AND time='DO-08pm' AND DATE(reg_date)='$date'";
+                        $sql = "SELECT token FROM token WHERE data='OK' AND memberid='$memberid' AND time='DO-08pm' AND DATE(reg_date)='$date'";
                         $result = $conn->query($sql);
                         $data8 = "[";
                         while ($row = $result->fetch_assoc()) {

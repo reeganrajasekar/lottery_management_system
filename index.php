@@ -18,7 +18,7 @@
                 <h3 class="text-secondary text-center mb-4">Agent Login</h3>
                 <form class="pt-1" action="/login.php" method="post">
                   <div class="form-group">
-                    <input type="email" name="email" required class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
+                    <input type="text" name="email" required class="form-control form-control-lg" id="exampleInputEmail1" placeholder="User Name">
                   </div>
                   <div class="form-group">
                     <input type="password" name="password" required class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">

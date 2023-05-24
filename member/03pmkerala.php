@@ -101,9 +101,6 @@ if(date("G",$t)=="14" && date("i",$t)>"50"){
                                     <option value="AB">AB</option>
                                     <option value="AC">AC</option>
                                     <option value="BC">BC</option>
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
                                 </select>
                                 <label class="pb-2">Qty :</label>
                                 <input type="number" id="sqty" value="1" class="form-control mb-4" placeholder="Qty">
@@ -179,121 +176,277 @@ if(date("G",$t)=="14" && date("i",$t)>"50"){
                         function addSet(){
                             stype = document.getElementById("stype").value
                             sqty = document.getElementById("sqty").value
-                            sstart = Array.from(String(document.getElementById("sstart").value).padStart(4,0), num => Number(num))
-                            send = Array.from(String(document.getElementById("send").value).padStart(4,0), num => Number(num))
-                            sstep = Array.from(String(document.getElementById("sstep").value.padStart(4,0)), num => Number(num))
+                            sstart = Array.from(String(document.getElementById("sstart").value), num => Number(num))
+                            send = Array.from(String(document.getElementById("send").value), num => Number(num))
+                            sstep = Array.from(String(document.getElementById("sstep").value), num => Number(num))
                             if(stype && sqty){
-                                if(sstart.length==3 || sstart.length==4){
-                                    setlist1=[]
-                                    setlist2=[]
-                                    setlist3=[]
-                                    setlist4=[]
-                                    if(sstep[0]==1 && sstart[0]!=send[0]){
-                                        newitem=sstart[0]
-                                        while(newitem<=send[0]){
-                                            setlist1.push(newitem)
-                                            newitem++
-                                        }
-                                        if (setlist1.length!=10) {
-                                            for (let index = 0; index < setlist1.length; index++) {
-                                                if (setlist1.length!=10) {
-                                                    setlist1.unshift(0)
+                                if (stype=="110" || stype=="60") {
+                                    if(sstart.length==4 && send.length==4 && sstep.length==4){
+                                        setlist1=[]
+                                        setlist2=[]
+                                        setlist3=[]
+                                        setlist4=[]
+                                        if(sstep[0]==1 && sstart[0]!=send[0]){
+                                            newitem=sstart[0]
+                                            while(newitem<=send[0]){
+                                                setlist1.push(newitem)
+                                                newitem++
+                                            }
+                                            if (setlist1.length!=10) {
+                                                for (let index = 0; index < setlist1.length; index++) {
+                                                    if (setlist1.length!=10) {
+                                                        setlist1.unshift(0)
+                                                    }
+                                                }
+                                            }
+                                        }else{
+                                            if (setlist1.length!=10) {
+                                                for (let index = 0; index < 10; index++) {
+                                                    if (setlist1.length!=10) {
+                                                        setlist1.unshift(send[0])
+                                                    }
                                                 }
                                             }
                                         }
+    
+                                        if(sstep[1]==1 && sstart[1]!=send[1]){
+                                            newitem=sstart[1]
+                                            while(newitem<=send[1]){
+                                                setlist2.push(newitem)
+                                                newitem++
+                                            }
+                                            if (setlist2.length!=10) {
+                                                for (let index = 0; index < setlist2.length; index++) {
+                                                    if (setlist2.length!=10) {
+                                                        setlist2.unshift(0)
+                                                    }
+                                                }
+                                            }
+                                        }else{
+                                            if (setlist2.length!=10) {
+                                                for (let index = 0; index < 10; index++) {
+                                                    if (setlist2.length!=10) {
+                                                        setlist2.unshift(send[1])
+                                                    }
+                                                }
+                                            }
+                                        }
+    
+                                        if(sstep[2]==1 && sstart[2]!=send[2]){
+                                            newitem=sstart[2]
+                                            while(newitem<=send[2]){
+                                                setlist3.push(newitem)
+                                                newitem++
+                                            }
+                                            if (setlist3.length!=10) {
+                                                for (let index = 0; index < setlist3.length; index++) {
+                                                    if (setlist3.length!=10) {
+                                                        setlist3.unshift(0)
+                                                    }
+                                                }
+                                            }
+                                        }else{
+                                            if (setlist3.length!=10) {
+                                                for (let index = 0; index < 10; index++) {
+                                                    if (setlist3.length!=10) {
+                                                        setlist3.unshift(send[2])
+                                                    }
+                                                }
+                                            }
+                                        }
+    
+                                        if(sstep[3]==1 && sstart[3]!=send[3]){
+                                            newitem=sstart[3]
+                                            while(newitem<=send[3]){
+                                                setlist4.push(newitem)
+                                                newitem++
+                                            }
+                                            if (setlist4.length!=10) {
+                                                for (let index = 0; index < setlist4.length; index++) {
+                                                    if (setlist4.length!=10) {
+                                                        setlist4.unshift(0)
+                                                    }
+                                                }
+                                            }
+                                        }else{
+                                            if (setlist4.length!=10) {
+                                                for (let index = 0; index < 10; index++) {
+                                                    if (setlist4.length!=10) {
+                                                        setlist4.unshift(send[3])
+                                                    }
+                                                }
+                                            }
+                                        }
+    
+                                        newloop=0;
+                                        while(newloop<setlist1.length){
+                                            newtok = setlist1[newloop]+""+setlist2[newloop]+""+setlist3[newloop]+""+setlist4[newloop]
+                                            if(newtok!=0){
+                                                addlist(stype,newtok,sqty)
+                                            }
+                                            newloop++;
+                                        }
+                                        document.getElementById("send").value=""
+                                        document.getElementById("sstart").value=""
+                                        document.getElementById("sstep").value=""
+                                        $('#staticBackdrop').modal('hide');
                                     }else{
-                                        if (setlist1.length!=10) {
-                                            for (let index = 0; index < 10; index++) {
-                                                if (setlist1.length!=10) {
-                                                    setlist1.unshift(send[0])
-                                                }
-                                            }
-                                        }
+                                        alert("Token must be 4 digit")
                                     }
-
-                                    if(sstep[1]==1 && sstart[1]!=send[1]){
-                                        newitem=sstart[1]
-                                        while(newitem<=send[1]){
-                                            setlist2.push(newitem)
-                                            newitem++
-                                        }
-                                        if (setlist2.length!=10) {
-                                            for (let index = 0; index < setlist2.length; index++) {
-                                                if (setlist2.length!=10) {
-                                                    setlist2.unshift(0)
+                                }else if (stype=="70" || stype=="30") {
+                                    if(sstart.length==3 && send.length==3 && sstep.length==3){
+                                        setlist1=[]
+                                        setlist2=[]
+                                        setlist3=[]
+                                        if(sstep[0]==1 && sstart[0]!=send[0]){
+                                            newitem=sstart[0]
+                                            while(newitem<=send[0]){
+                                                setlist1.push(newitem)
+                                                newitem++
+                                            }
+                                            if (setlist1.length!=10) {
+                                                for (let index = 0; index < setlist1.length; index++) {
+                                                    if (setlist1.length!=10) {
+                                                        setlist1.unshift(0)
+                                                    }
+                                                }
+                                            }
+                                        }else{
+                                            if (setlist1.length!=10) {
+                                                for (let index = 0; index < 10; index++) {
+                                                    if (setlist1.length!=10) {
+                                                        setlist1.unshift(send[0])
+                                                    }
                                                 }
                                             }
                                         }
+    
+                                        if(sstep[1]==1 && sstart[1]!=send[1]){
+                                            newitem=sstart[1]
+                                            while(newitem<=send[1]){
+                                                setlist2.push(newitem)
+                                                newitem++
+                                            }
+                                            if (setlist2.length!=10) {
+                                                for (let index = 0; index < setlist2.length; index++) {
+                                                    if (setlist2.length!=10) {
+                                                        setlist2.unshift(0)
+                                                    }
+                                                }
+                                            }
+                                        }else{
+                                            if (setlist2.length!=10) {
+                                                for (let index = 0; index < 10; index++) {
+                                                    if (setlist2.length!=10) {
+                                                        setlist2.unshift(send[1])
+                                                    }
+                                                }
+                                            }
+                                        }
+    
+                                        if(sstep[2]==1 && sstart[2]!=send[2]){
+                                            newitem=sstart[2]
+                                            while(newitem<=send[2]){
+                                                setlist3.push(newitem)
+                                                newitem++
+                                            }
+                                            if (setlist3.length!=10) {
+                                                for (let index = 0; index < setlist3.length; index++) {
+                                                    if (setlist3.length!=10) {
+                                                        setlist3.unshift(0)
+                                                    }
+                                                }
+                                            }
+                                        }else{
+                                            if (setlist3.length!=10) {
+                                                for (let index = 0; index < 10; index++) {
+                                                    if (setlist3.length!=10) {
+                                                        setlist3.unshift(send[2])
+                                                    }
+                                                }
+                                            }
+                                        }
+    
+                                        newloop=0;
+                                        while(newloop<setlist1.length){
+                                            newtok = setlist1[newloop]+""+setlist2[newloop]+""+setlist3[newloop]
+                                            if(newtok!=0){
+                                                addlist(stype,newtok,sqty)
+                                            }
+                                            newloop++;
+                                        }
+                                        document.getElementById("send").value=""
+                                        document.getElementById("sstart").value=""
+                                        document.getElementById("sstep").value=""
+                                        $('#staticBackdrop').modal('hide');
                                     }else{
-                                        if (setlist2.length!=10) {
-                                            for (let index = 0; index < 10; index++) {
-                                                if (setlist2.length!=10) {
-                                                    setlist2.unshift(send[1])
-                                                }
-                                            }
-                                        }
+                                        alert("Token must be 3 digit")
                                     }
-
-                                    if(sstep[2]==1 && sstart[2]!=send[2]){
-                                        newitem=sstart[2]
-                                        while(newitem<=send[2]){
-                                            setlist3.push(newitem)
-                                            newitem++
-                                        }
-                                        if (setlist3.length!=10) {
-                                            for (let index = 0; index < setlist3.length; index++) {
-                                                if (setlist3.length!=10) {
-                                                    setlist3.unshift(0)
-                                                }
-                                            }
-                                        }
-                                    }else{
-                                        if (setlist3.length!=10) {
-                                            for (let index = 0; index < 10; index++) {
-                                                if (setlist3.length!=10) {
-                                                    setlist3.unshift(send[2])
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    if(sstep[3]==1 && sstart[3]!=send[3]){
-                                        newitem=sstart[3]
-                                        while(newitem<=send[3]){
-                                            setlist4.push(newitem)
-                                            newitem++
-                                        }
-                                        if (setlist4.length!=10) {
-                                            for (let index = 0; index < setlist4.length; index++) {
-                                                if (setlist4.length!=10) {
-                                                    setlist4.unshift(0)
-                                                }
-                                            }
-                                        }
-                                    }else{
-                                        if (setlist4.length!=10) {
-                                            for (let index = 0; index < 10; index++) {
-                                                if (setlist4.length!=10) {
-                                                    setlist4.unshift(send[3])
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    newloop=0;
-                                    while(newloop<setlist1.length){
-                                        newtok = setlist1[newloop]+""+setlist2[newloop]+""+setlist3[newloop]+""+setlist4[newloop]
-                                        if(newtok!=0){
-                                            addlist(stype,newtok,sqty)
-                                        }
-                                        newloop++;
-                                    }
-                                    document.getElementById("send").value=""
-                                    document.getElementById("sstart").value=""
-                                    document.getElementById("sstep").value=""
-                                    $('#staticBackdrop').modal('hide');
                                 }else{
-                                    alert("Token must be 3 or 4 digit")
+                                    if(sstart.length==2 && send.length==2 && sstep.length==2){
+                                        setlist1=[]
+                                        setlist2=[]
+                                        if(sstep[0]==1 && sstart[0]!=send[0]){
+                                            newitem=sstart[0]
+                                            while(newitem<=send[0]){
+                                                setlist1.push(newitem)
+                                                newitem++
+                                            }
+                                            if (setlist1.length!=10) {
+                                                for (let index = 0; index < setlist1.length; index++) {
+                                                    if (setlist1.length!=10) {
+                                                        setlist1.unshift(0)
+                                                    }
+                                                }
+                                            }
+                                        }else{
+                                            if (setlist1.length!=10) {
+                                                for (let index = 0; index < 10; index++) {
+                                                    if (setlist1.length!=10) {
+                                                        setlist1.unshift(send[0])
+                                                    }
+                                                }
+                                            }
+                                        }
+    
+                                        if(sstep[1]==1 && sstart[1]!=send[1]){
+                                            newitem=sstart[1]
+                                            while(newitem<=send[1]){
+                                                setlist2.push(newitem)
+                                                newitem++
+                                            }
+                                            if (setlist2.length!=10) {
+                                                for (let index = 0; index < setlist2.length; index++) {
+                                                    if (setlist2.length!=10) {
+                                                        setlist2.unshift(0)
+                                                    }
+                                                }
+                                            }
+                                        }else{
+                                            if (setlist2.length!=10) {
+                                                for (let index = 0; index < 10; index++) {
+                                                    if (setlist2.length!=10) {
+                                                        setlist2.unshift(send[1])
+                                                    }
+                                                }
+                                            }
+                                        }
+    
+                                        newloop=0;
+                                        while(newloop<setlist1.length){
+                                            newtok = setlist1[newloop]+""+setlist2[newloop]
+                                            if(newtok!=0){
+                                                addlist(stype,newtok,sqty)
+                                            }
+                                            newloop++;
+                                        }
+                                        document.getElementById("send").value=""
+                                        document.getElementById("sstart").value=""
+                                        document.getElementById("sstep").value=""
+                                        $('#staticBackdrop').modal('hide');
+                                    }else{
+                                        alert("Token must be 2 digit")
+                                    }
                                 }
                             }else{
                                 alert("Select Token Type and Qty")
@@ -387,16 +540,32 @@ if(date("G",$t)=="14" && date("i",$t)>"50"){
                             onetype = document.getElementById('type').value;
                             oneqty = document.getElementById('qty').value;
                             if(onev && onetype && oneqty){
-                                if (onev.length==3 || onev.length==4) {
-                                    arr = Array.from(String(onev), num => Number(num))
-                                    data=calculateAllCombinations(arr)
-                                    data.map((i)=>{
-                                        if(i.join("").length==onev.length){
-                                            addlist(onetype,i.join(""),oneqty)
-                                        }
-                                    })
-                                } else {
-                                    alert("Token Number Must be 3 or 4 digit")
+                                if (onetype=="30" || onetype=="70") {
+                                    if (onev.length==3) {
+                                        arr = Array.from(String(onev), num => Number(num))
+                                        data=calculateAllCombinations(arr)
+                                        data.map((i)=>{
+                                            if(i.join("").length==onev.length){
+                                                addlist(onetype,i.join(""),oneqty)
+                                            }
+                                        })
+                                    }else{
+                                        alert("Token Number Must be 3  digit")
+                                    }
+                                }else if (onetype=="110" || onetype=="60") {
+                                    if (onev.length==4) {
+                                        arr = Array.from(String(onev), num => Number(num))
+                                        data=calculateAllCombinations(arr)
+                                        data.map((i)=>{
+                                            if(i.join("").length==onev.length){
+                                                addlist(onetype,i.join(""),oneqty)
+                                            }
+                                        })
+                                    }else{
+                                        alert("Token Number Must be 4 digit")
+                                    }
+                                }else {
+                                    alert("Select the Correct Token Type")
                                 }
                             }else{
                                 alert("Select Token Type , Token and Qty")

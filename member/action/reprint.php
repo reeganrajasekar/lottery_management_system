@@ -92,7 +92,7 @@ if($time == "KL-03pm"){
 }
 ?>
 for (i=0;i<data[0].length;i++) {
-    document.write(`BU-${data[0][i].padEnd(3, ' ')}        ${data[1][i].padEnd(4, ' ')}         ${data[2][i]}  `)
+    document.write(`<?php echo(substr($time,0,2))?>-${data[0][i].padEnd(3, ' ')}        ${data[1][i].padEnd(4, ' ')}         ${data[2][i]}  `)
     if(i+1!=data[0].length){
         document.write('\n')
     }
