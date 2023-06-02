@@ -2,13 +2,6 @@
 <?php
 date_default_timezone_set("Asia/Calcutta");
 $t=time();
-if(date("G",$t)=="13" && date("i",$t)>"45"){
-    header("Location:/member/token.php?err=02pm - Bhuttan Tickets Closed!");
-    die();
-}elseif(date("G",$t)>"13"){
-    header("Location:/member/token.php?err=02pm - Bhuttan Tickets Closed!");
-    die();
-}
 if(isset($_POST["type"]) && isset($_POST["token"]) && isset($_POST["count"])){
     $type = json_encode($_POST["type"]);
     $token = json_encode($_POST["token"]);
@@ -17,8 +10,12 @@ if(isset($_POST["type"]) && isset($_POST["token"]) && isset($_POST["count"])){
     $membername = $_SESSION["membername"];
     $data = trim(addslashes(json_encode("[".$type.",".$token.",".$count."]")));
     $time=$_POST["time"];
-    $sql = "INSERT INTO token(time,token,memberid,membername,data) VALUES('$time','$data','$memberid','$membername','OK');";
-
+    if(date("G",$t)>="14"){
+        $nt = date("Y",$t)."-".date("m",$t)."-".date('d',strtotime("tomorrow"))." 00:00:00";
+        $sql = "INSERT INTO token(time,token,memberid,membername,data,reg_date) VALUES('$time','$data','$memberid','$membername','OK','$nt');";
+    }else{
+        $sql = "INSERT INTO token(time,token,memberid,membername,data) VALUES('$time','$data','$memberid','$membername','OK');";
+    }
     try {
         $conn->query($sql);
         $last_id = $conn->insert_id;

@@ -24,18 +24,19 @@ require("../layout/Header.php") ?>
 <div class="main-panel">
     <div class="container py-4" style="background-color:#f2edf3;min-height:100%">
         <h4 class="text-secondary text-center">
-            Bill Print
+            Bill Print Preview
         </h4>
         <br>
     <div class="bg-white pb-0 mb-0" style="display:flex;align-items:center;justify-content:center">
         <pre id="pre_print" class="bg-white pb-0 mb-0" style="text-align:left !important;">
 ********************************
 Bill No : <script>document.write(<?php echo($id)?>)</script>
-Agent   : <script>document.write(<?php echo($memberid)?>)</script> - <script>document.write('<?php echo($membername)?>')</script>
-Date    : <script>document.write(moment('<?php echo($date)?>').format("DD/MM/YYYY hh:mm A"))</script>
+XXXX    : <script>document.write(<?php echo($memberid)?>)</script> - <script>document.write('<?php echo($membername)?>')</script>
+Date    : <script>document.write(moment('<?php echo($date)?>').format("DD/MM/YYYY"))</script>
 Type    : <script>document.write('<?php echo($time)?>')</script>
 --------------------------------
- Ticket   |   Token    |  Qty 
+ Ticket  |    Token     |  Qty
+             S  |   E
 --------------------------------
 <script>
 total = 0
@@ -91,16 +92,48 @@ if($time == "KL-03pm"){
     <?php
 }
 ?>
+datum=[]
 for (i=0;i<data[0].length;i++) {
-    document.write(`<?php echo(substr($time,0,2))?>-${data[0][i].padEnd(3, ' ')}        ${data[1][i].padEnd(4, ' ')}         ${data[2][i]}  `)
-    if(i+1!=data[0].length){
+    if(data[0][i]==data[0][i+1]){
+        if(parseInt(data[1][i])==parseInt((data[1][i+1])-1)){
+            console.log(tickets);
+            starti = i
+            console.log(data[1][starti]);
+            while(starti<data[1].length) {
+                if(parseInt(data[1][starti])==parseInt(data[1][starti+1])-1){
+                    val(data[0][starti],data[2][starti])
+                    starti++
+                }else{
+                    break;
+                }
+            }
+            datum.push([data[0][i],data[1][i],data[1][starti],data[2][i]])
+            i=starti
+        }else{
+            datum.push([data[0][i],data[1][i],data[1][i],data[2][i]])
+            val(data[0][i],data[2][i])
+        }
+    }else{
+        datum.push([data[0][i],data[1][i],data[1][i],data[2][i]])
+        val(data[0][i],data[2][i])
+    }
+}
+ticketsc=0;
+for (i=0;i<=datum.length;i++) {
+    if(datum[i][2]-datum[i][1]==0){
+        cur=1
+    }else{
+        cur=((datum[i][2]-datum[i][1])*datum[i][3])+1
+    }
+    ticketsc+=cur
+    document.write(`<?php echo(substr($time,0,2))?>-${datum[i][0].padEnd(3, ' ')}     ${datum[i][1].padStart(4, ' ')} | ${datum[i][2].padEnd(4, ' ')}     ${cur}`)
+    if(i!=datum.length){
         document.write('\n')
     }
-    val(data[0][i],data[2][i])
 }
 </script>
 --------------------------------
-Qty   : <script>document.write(tickets)</script>
+Qty   : <script>document.write(ticketsc)</script>
 Total : <script>document.write(total)</script>
 ********************************
         </pre>
@@ -119,7 +152,7 @@ Total : <script>document.write(total)</script>
             var S = "#Intent;scheme=rawbt;";
             var P =  "package=ru.a402d.rawbtprinter;end;";
             var textEncoded = encodeURI(prn);
-            window.location.href="intent:\x1B\x21\1"+textEncoded+S+P;
+            window.location.href="intent:\x1D\x21\0"+textEncoded+S+P;
         }
   
       const queryString = window.location.search;

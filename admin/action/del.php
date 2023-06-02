@@ -281,7 +281,7 @@ data.map(t=>{
                                 j++;
                                 text+=`
                                     <tr>
-                                        <td>${j}</td>
+                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
@@ -327,7 +327,7 @@ data.map(t=>{
                                 j++;
                                 text+=`
                                     <tr>
-                                        <td>${j}</td>
+                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
@@ -372,7 +372,7 @@ data.map(t=>{
                                 j++;
                                 text+=`
                                     <tr>
-                                        <td>${j}</td>
+                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
@@ -417,7 +417,7 @@ data.map(t=>{
                                 j++;
                                 text+=`
                                     <tr>
-                                        <td>${j}</td>
+                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
@@ -462,7 +462,7 @@ data.map(t=>{
                                 j++;
                                 text+=`
                                     <tr>
-                                        <td>${j}</td>
+                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
@@ -506,7 +506,7 @@ data.map(t=>{
                                 j++;
                                 text+=`
                                     <tr>
-                                        <td>${j}</td>
+                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
@@ -551,7 +551,7 @@ data.map(t=>{
                                 j++;
                                 text+=`
                                     <tr>
-                                        <td>${j}</td>
+                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
@@ -596,7 +596,7 @@ data.map(t=>{
                                 j++;
                                 text+=`
                                     <tr>
-                                        <td>${j}</td>
+                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
@@ -641,7 +641,7 @@ data.map(t=>{
                                 j++;
                                 text+=`
                                     <tr>
-                                        <td>${j}</td>
+                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
@@ -686,7 +686,7 @@ data.map(t=>{
                                 j++;
                                 text+=`
                                     <tr>
-                                        <td>${j}</td>
+                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>

@@ -4,7 +4,7 @@
 require("./layout/Navbar.php");
 date_default_timezone_set("Asia/Calcutta");
 $t=time();
-if(date("G",$t)>"20" || date("G",$t)=="20"){
+if((date("G",$t)=="20" && date("i",$t)>"10" ) || (date("G",$t)=="21" && date("i",$t)<"10")){
     header("Location:/member/token.php?err=08pm - Docoma Tickets Closed!");
     die();
 }
@@ -13,7 +13,7 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
 <div class="main-panel">
     <div class="container py-4" style="background-color:#f2edf3;min-height:100%">
         <h4 class="text-secondary">
-            08pm - DOCOMA
+            08pm - DOCOMA <?php if(date("G",$t)>="21"){?><span class="text-danger">( Tomorrow Token )</span><?php } ?>
         </h4>
         <br>
         <form onsubmit="return addlist(document.getElementById('type').value,document.getElementById('token').value,document.getElementById('qty').value)" class="container py-3 bg-white border">
@@ -49,7 +49,90 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
             <br>
             <div class="row">
                 <div class="col-6 text-start">
-                    <span class="btn btn-secondary" onclick="addBoard()">All Board</span>
+                    <span class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdropstr">Straight</span>
+                    <div class="modal fade" id="staticBackdropstr" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Add Straight</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <label class="pb-2">Type :</label>
+                                    <select class="form-select mb-3" style="height:35px" id="sttype">
+                                        <option value="" selected disabled>Choose</option>
+                                        <option value="30">30</option>
+                                        <option value="AB">AB</option>
+                                        <option value="AC">AC</option>
+                                        <option value="BC">BC</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                    <label class="pb-2">Qty :</label>
+                                    <input type="number" id="stqty" value="1" class="form-control mb-4" placeholder="Qty">
+                                    
+                                    <label class="pb-2">Start :</label>
+                                    <input type="number" id="ststart" class="form-control mb-3" placeholder="Start Number">
+                                    <label class="pb-2">End :</label>
+                                    <input type="number" id="stend" class="form-control mb-3" placeholder="End Number">
+                                    <div class="text-end">
+                                        <button type="button" class="btn btn-primary" onclick="addstraight()">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        function addstraight(){
+                            stqty = document.getElementById("stqty").value
+                            sttype = document.getElementById("sttype").value
+                            ststart = document.getElementById("ststart").value
+                            stend = document.getElementById("stend").value
+                            if (sttype=="30") {
+                                if(ststart.length==3 && stend.length==3){
+                                    for(st=ststart;st<=stend;st++){
+                                        addlist(sttype,st.toString().padStart(3,"0"),stqty)
+                                    }
+                                    document.getElementById("ststart").value=""
+                                    document.getElementById("stend").value=""
+                                    $('#staticBackdropstr').modal('hide');
+                                }else{
+                                    alert("Start and End Should be 3 digit!")
+                                }
+                            }
+                            if (sttype=="AB" || sttype=="BC" || sttype=="AC") {
+                                if(ststart.length==2 && stend.length==2){
+                                    for(st=ststart;st<=stend;st++){
+                                        addlist(sttype,st.toString().padStart(2,"0"),stqty)
+                                    }
+                                    document.getElementById("ststart").value=""
+                                    document.getElementById("stend").value=""
+                                    $('#staticBackdropstr').modal('hide');
+                                }else{
+                                    alert("Start and End Should be 2 digit!")
+                                }
+                            }
+                            if (sttype=="A" || sttype=="B" ||sttype=="C") {
+                                if(ststart.length==1 && stend.length==1){
+                                    for(st=ststart;st<=stend;st++){
+                                        addlist(sttype,st.toString().padStart(1,"0"),stqty)
+                                    }
+                                    document.getElementById("ststart").value=""
+                                    document.getElementById("stend").value=""
+                                    $('#staticBackdropstr').modal('hide');
+                                }else{
+                                    alert("Start and End Should be 1 digit!")
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="col-6 text-end">
+                    <button class="btn btn-primary">+Add</button>
+                </div>
+                <div class="col-12">
+                    <span class="btn  mt-3 px-4 btn-secondary" onclick="addBoard()">All Board</span>
                     <script>
                         function addBoard(){
                             onv = document.getElementById('token').value;
@@ -73,10 +156,8 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
                             }
                         }
                     </script>
-                    <br><br>
-                    <span class="btn btn-warning" onclick="addBox()">Box</span>
-                    <br><br>
-                    <span class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Set</span>
+                    <span class="btn mt-3 px-4 btn-warning" onclick="addBox()">Box</span>
+                    <span class="btn mt-3 px-4 btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Set</span>
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -109,9 +190,6 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-6 text-end">
-                    <button class="btn btn-primary">+Add</button>
                 </div>
             </div>
         </form>
@@ -191,7 +269,7 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
                                             }
                                         }else{
                                             if (setlist1.length!=10) {
-                                                for (let index = 0; index < 10; index++) {
+                                                for (let index = 0; index <= 10; index++) {
                                                     if (setlist1.length!=10) {
                                                         setlist1.unshift(send[0])
                                                     }
@@ -214,7 +292,7 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
                                             }
                                         }else{
                                             if (setlist2.length!=10) {
-                                                for (let index = 0; index < 10; index++) {
+                                                for (let index = 0; index <= 10; index++) {
                                                     if (setlist2.length!=10) {
                                                         setlist2.unshift(send[1])
                                                     }
@@ -237,7 +315,7 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
                                             }
                                         }else{
                                             if (setlist3.length!=10) {
-                                                for (let index = 0; index < 10; index++) {
+                                                for (let index = 0; index <= 10; index++) {
                                                     if (setlist3.length!=10) {
                                                         setlist3.unshift(send[2])
                                                     }
@@ -247,9 +325,7 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
                                         newloop=0;
                                         while(newloop<setlist1.length){
                                             newtok = setlist1[newloop]+""+setlist2[newloop]+""+setlist3[newloop]
-                                            if(newtok!=0){
-                                                addlist(stype,newtok,sqty)
-                                            }
+                                            addlist(stype,newtok,sqty)
                                             newloop++;
                                         }
                                         document.getElementById("send").value=""
@@ -278,7 +354,7 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
                                             }
                                         }else{
                                             if (setlist1.length!=10) {
-                                                for (let index = 0; index < 10; index++) {
+                                                for (let index = 0; index <= 10; index++) {
                                                     if (setlist1.length!=10) {
                                                         setlist1.unshift(send[0])
                                                     }
@@ -301,7 +377,7 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
                                             }
                                         }else{
                                             if (setlist2.length!=10) {
-                                                for (let index = 0; index < 10; index++) {
+                                                for (let index = 0; index <= 10; index++) {
                                                     if (setlist2.length!=10) {
                                                         setlist2.unshift(send[1])
                                                     }
@@ -311,9 +387,7 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
                                         newloop=0;
                                         while(newloop<setlist1.length){
                                             newtok = setlist1[newloop]+""+setlist2[newloop]
-                                            if(newtok!=0){
-                                                addlist(stype,newtok,sqty)
-                                            }
+                                            addlist(stype,newtok,sqty)
                                             newloop++;
                                         }
                                         document.getElementById("send").value=""
@@ -334,19 +408,19 @@ if(date("G",$t)>"20" || date("G",$t)=="20"){
                             max=0;
                             switch (key) {
                                 case "30":
-                                    min=100
+                                    min=000
                                     max=999
                                     break;
                                 case "AB":
-                                    min=10
+                                    min=00
                                     max=99
                                     break;
                                 case "AC":
-                                    min=10
+                                    min=00
                                     max=99
                                     break;
                                 case "BC":
-                                    min=10
+                                    min=00
                                     max=99
                                     break;
                                 case "A":
