@@ -3,9 +3,9 @@
 date_default_timezone_set("Asia/Calcutta");
 $t=time();
 if(isset($_POST["type"]) && isset($_POST["token"]) && isset($_POST["count"])){
-    $type = json_encode($_POST["type"]);
-    $token = json_encode($_POST["token"]);
-    $count = json_encode($_POST["count"]);
+    $type = json_encode(array_reverse($_POST["type"]));
+    $token = json_encode(array_reverse($_POST["token"]));
+    $count = json_encode(array_reverse($_POST["count"]));
     $memberid = $_SESSION["memberid"];
     $membername = $_SESSION["membername"];
     $data = trim(addslashes(json_encode("[".$type.",".$token.",".$count."]")));

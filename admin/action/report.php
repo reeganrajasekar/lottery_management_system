@@ -240,22 +240,28 @@ data.map(t=>{
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                         <td>Entry Report</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td></td>
+                        <td>From : </td>
+                        <td><?php echo($from)?></td>
                         <td></td>
+                        <td>To : </td>
+                        <td><?php echo($to)?></td>
                         <td></td>
-                        <td></td>
-                        <td>From : <?php echo($from)?> - To : <?php echo($to)?></td>
                     </tr>
                     <tr>
                         <td></td>
+                        <td>Name :</td>
+                        <td><?php echo($membername)?></td>
                         <td></td>
+                        <td>ID</td>
+                        <td><?php echo($memberid)?></td>
                         <td></td>
-                        <td></td>
-                        <td><?php echo($membername)?> - <?php echo($memberid)?></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -279,14 +285,18 @@ data.map(t=>{
                             j=0;
                             t110.map(i=>{
                                 j++;
+                                if (j%2!=0) {
+                                    text+=`<tr>`
+                                }
                                 text+=`
-                                    <tr>
-                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
-                                    </tr>
+                                        <td></td>
                                 `
+                                if (j%2==0) {
+                                    text+=`</tr>`
+                                }
                             })
                             text+=`
                             <tr>
@@ -325,14 +335,18 @@ data.map(t=>{
                             j=0;
                             t70.map(i=>{
                                 j++;
+                                if (j%2!=0) {
+                                    text+=`<tr>`
+                                }
                                 text+=`
-                                    <tr>
-                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
-                                    </tr>
+                                        <td></td>
                                 `
+                                if (j%2==0) {
+                                    text+=`</tr>`
+                                }
                             })
                             text+=`
                             <tr>
@@ -370,14 +384,18 @@ data.map(t=>{
                             j=0;
                             t60.map(i=>{
                                 j++;
+                                if (j%2!=0) {
+                                    text+=`<tr>`
+                                }
                                 text+=`
-                                    <tr>
-                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
-                                    </tr>
+                                        <td></td>
                                 `
+                                if (j%2==0) {
+                                    text+=`</tr>`
+                                }
                             })
                             text+=`
                             <tr>
@@ -415,14 +433,18 @@ data.map(t=>{
                             j=0;
                             t30.map(i=>{
                                 j++;
+                                if (j%2!=0) {
+                                    text+=`<tr>`
+                                }
                                 text+=`
-                                    <tr>
-                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
-                                    </tr>
+                                        <td></td>
                                 `
+                                if (j%2==0) {
+                                    text+=`</tr>`
+                                }
                             })
                             text+=`
                             <tr>
@@ -460,14 +482,18 @@ data.map(t=>{
                             j=0;
                             tAB.map(i=>{
                                 j++;
+                                if (j%2!=0) {
+                                    text+=`<tr>`
+                                }
                                 text+=`
-                                    <tr>
-                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
-                                    </tr>
+                                        <td></td>
                                 `
+                                if (j%2==0) {
+                                    text+=`</tr>`
+                                }
                             })
                             text+=`
                             <tr>
@@ -504,14 +530,18 @@ data.map(t=>{
                             j=0;
                             tBC.map(i=>{
                                 j++;
+                                if (j%2!=0) {
+                                    text+=`<tr>`
+                                }
                                 text+=`
-                                    <tr>
-                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
-                                    </tr>
+                                        <td></td>
                                 `
+                                if (j%2==0) {
+                                    text+=`</tr>`
+                                }
                             })
                             text+=`
                             <tr>
@@ -549,14 +579,18 @@ data.map(t=>{
                             j=0;
                             tAC.map(i=>{
                                 j++;
+                                if (j%2!=0) {
+                                    text+=`<tr>`
+                                }
                                 text+=`
-                                    <tr>
-                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
-                                    </tr>
+                                        <td></td>
                                 `
+                                if (j%2==0) {
+                                    text+=`</tr>`
+                                }
                             })
                             text+=`
                             <tr>
@@ -594,14 +628,18 @@ data.map(t=>{
                             j=0;
                             tA.map(i=>{
                                 j++;
+                                if (j%2!=0) {
+                                    text+=`<tr>`
+                                }
                                 text+=`
-                                    <tr>
-                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
-                                    </tr>
+                                        <td></td>
                                 `
+                                if (j%2==0) {
+                                    text+=`</tr>`
+                                }
                             })
                             text+=`
                             <tr>
@@ -639,14 +677,18 @@ data.map(t=>{
                             j=0;
                             tB.map(i=>{
                                 j++;
+                                if (j%2!=0) {
+                                    text+=`<tr>`
+                                }
                                 text+=`
-                                    <tr>
-                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
-                                    </tr>
+                                        <td></td>
                                 `
+                                if (j%2==0) {
+                                    text+=`</tr>`
+                                }
                             })
                             text+=`
                             <tr>
@@ -684,14 +726,18 @@ data.map(t=>{
                             j=0;
                             tC.map(i=>{
                                 j++;
+                                if (j%2!=0) {
+                                    text+=`<tr>`
+                                }
                                 text+=`
-                                    <tr>
-                                        <td></td>
                                         <td>${i[0]}</td>
                                         <td>-${i[0]}</td>
                                         <td>${i[1]}</td>
-                                    </tr>
+                                        <td></td>
                                 `
+                                if (j%2==0) {
+                                    text+=`</tr>`
+                                }
                             })
                             text+=`
                             <tr>

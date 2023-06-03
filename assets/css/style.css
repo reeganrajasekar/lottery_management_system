@@ -51,6 +51,12 @@
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
 
+.form-control {
+  border: 2px solid #aaa !important;
+}
+.form-select {
+  border: 2px solid #aaa !important;
+}
 @-webkit-keyframes flash {
   0% {
     opacity: 1; }

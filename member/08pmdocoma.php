@@ -227,13 +227,8 @@ if((date("G",$t)=="20" && date("i",$t)>"10" ) || (date("G",$t)=="21" && date("i"
                             </td>
                             <td><i class="mdi mdi-delete menu-icon text-danger" onclick="delete_node(${i})"></i></td>
                             `
-                            function insertAfter(referenceNode, newNode) {
-                                referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-                            }
-                            var el = document.createElement("tr");
-                            el.id = 'i'+(i+1);
-                            var div = document.getElementById('i'+i);
-                            insertAfter(div, el);
+                            document.getElementById('i'+i).insertAdjacentHTML('beforebegin',`<tr id='i${i+1}'><tr>`);
+
                             i = i+1;
                             document.getElementById('token').value=""
                             document.getElementById('token').focus()

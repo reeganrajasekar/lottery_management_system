@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$username = "lottery";
+$username = "root";
 $password = "trysomething";
 $db_name = "lottery";
 $conn = new mysqli($servername, $username, $password,$db_name);
