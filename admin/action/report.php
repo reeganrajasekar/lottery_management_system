@@ -25,6 +25,8 @@ data=<?php echo(json_encode($data))?>;
 t110=[]
 t70=[]
 t60=[]
+t603=[]
+t604=[]
 t30=[]
 tAB=[]
 tAC=[]
@@ -89,6 +91,42 @@ data.map(t=>{
                 }
             }else{
                 t60.push([token[1][loop],token[2][loop]])
+            }
+        }else if(i=="60-3D"){
+            if(t603.length>0){
+                re=0;
+                for(m=0;t603.length>m;m++){
+                    if(t603[m][0]==token[1][loop]){
+                        t603[m][1]++;
+                        re=0
+                        break;
+                    }else{
+                        re=1
+                    }
+                }
+                if(re==1){
+                    t603.push([token[1][loop],token[2][loop]])
+                }
+            }else{
+                t603.push([token[1][loop],token[2][loop]])
+            }
+        }else if(i=="60-4D"){
+            if(t604.length>0){
+                re=0;
+                for(m=0;t604.length>m;m++){
+                    if(t604[m][0]==token[1][loop]){
+                        t604[m][1]++;
+                        re=0
+                        break;
+                    }else{
+                        re=1
+                    }
+                }
+                if(re==1){
+                    t604.push([token[1][loop],token[2][loop]])
+                }
+            }else{
+                t604.push([token[1][loop],token[2][loop]])
             }
         }else if(i=="30"){
             if(t30.length>0){
@@ -233,10 +271,11 @@ data.map(t=>{
             </button>
         </div>
         <br>
-        <div class="table-responsive" style="display:none">
-            <table class="table table-striped table-bordered ">
+        <div class="table-responsive" >
+            <table class="table table-striped table-bordered " style="display:none;">
                 <tbody>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -244,8 +283,10 @@ data.map(t=>{
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td>From : </td>
                         <td><?php echo($from)?></td>
@@ -253,8 +294,10 @@ data.map(t=>{
                         <td>To : </td>
                         <td><?php echo($to)?></td>
                         <td></td>
+                        <td></td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td>Name :</td>
                         <td><?php echo($membername)?></td>
@@ -262,8 +305,14 @@ data.map(t=>{
                         <td>ID</td>
                         <td><?php echo($memberid)?></td>
                         <td></td>
+                        <td></td>
                     </tr>
                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -285,17 +334,17 @@ data.map(t=>{
                             j=0;
                             t110.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
+                                        <td>''${i[0]}''</td>
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                if (j==3) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
@@ -335,17 +384,17 @@ data.map(t=>{
                             j=0;
                             t70.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
+                                        <td>''${i[0]}''</td>
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                if (j==3) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
@@ -384,22 +433,118 @@ data.map(t=>{
                             j=0;
                             t60.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
+                                        <td>''${i[0]}''</td>
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                if (j==3) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
                             <tr>
                                 <td>Total : ${t60.length}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            `
+                            document.write(text)
+                        }
+                    </script>
+
+                    <?php 
+                    }
+                    if($_POST["token"]=="60-3D" || $_POST["token"]=="all"){ 
+                    ?>
+                    <!-- 60 -->
+                    <script>
+                        if(t603.length > 0){
+                            text=`
+                            <tr>
+                                <td><?php echo(substr($type,0,2))?> . 60-3D</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            `
+                            j=0;
+                            t603.map(i=>{
+                                j++;
+                                if (j==0) {
+                                    text+=`<tr>`
+                                }
+                                text+=`
+                                        <td>''${i[0]}''</td>
+                                        <td>${i[1]}</td>
+                                        <td></td>
+                                `
+                                if (j==3) {
+                                    text+=`</tr>`
+                                    j=0
+                                }
+                            })
+                            text+=`
+                            <tr>
+                                <td>Total : ${t603.length}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            `
+                            document.write(text)
+                        }
+                    </script>
+
+                    <?php 
+                    }
+                    if($_POST["token"]=="60-4D" || $_POST["token"]=="all"){ 
+                    ?>
+                    <!-- 60-4D -->
+                    <script>
+                        if(t604.length > 0){
+                            text=`
+                            <tr>
+                                <td><?php echo(substr($type,0,2))?> . 60-4D</td>
+                            </tr>
+                            `
+                            j=0;
+                            t604.sort()
+                            t604.map(i=>{
+                                j++;
+                                if (j==0) {
+                                    text+=`<tr>`
+                                }
+                                text+=`
+                                        <td>''${i[0]}''</td>
+                                        <td>${i[1]}</td>
+                                        <td></td>
+                                `
+                                if (j==3) {
+                                    text+=`</tr>`
+                                    j=0
+                                }
+                            })
+                            text+=`
+                            <tr>
+                                <td>Total : ${t604.length}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -433,17 +578,17 @@ data.map(t=>{
                             j=0;
                             t30.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
+                                        <td>''${i[0]}''</td>
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                if (j==3) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
@@ -482,17 +627,17 @@ data.map(t=>{
                             j=0;
                             tAB.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
+                                        <td>''${i[0]}''</td>
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                if (j==3) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
@@ -530,17 +675,17 @@ data.map(t=>{
                             j=0;
                             tBC.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
+                                        <td>''${i[0]}''</td>
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                if (j==3) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
@@ -570,7 +715,7 @@ data.map(t=>{
                         if(tAC.length > 0){
                             text=`
                             <tr>
-                                <td><?php echo(substr($type,0,2))?> . BC</td>
+                                <td><?php echo(substr($type,0,2))?> . AC</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -579,17 +724,17 @@ data.map(t=>{
                             j=0;
                             tAC.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
+                                        <td>''${i[0]}''</td>
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                if (j==3) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
@@ -619,7 +764,7 @@ data.map(t=>{
                         if(tA.length > 0){
                             text=`
                             <tr>
-                                <td><?php echo(substr($type,0,2))?> . BC</td>
+                                <td><?php echo(substr($type,0,2))?> . A</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -628,17 +773,17 @@ data.map(t=>{
                             j=0;
                             tA.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
+                                        <td>''${i[0]}''</td>
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                if (j==3) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
@@ -668,7 +813,7 @@ data.map(t=>{
                         if(tB.length > 0){
                             text=`
                             <tr>
-                                <td><?php echo(substr($type,0,2))?> . BC</td>
+                                <td><?php echo(substr($type,0,2))?> . B</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -677,17 +822,17 @@ data.map(t=>{
                             j=0;
                             tB.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
+                                        <td>''${i[0]}''</td>
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                if (j==3) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
@@ -717,7 +862,7 @@ data.map(t=>{
                         if(tC.length > 0){
                             text=`
                             <tr>
-                                <td><?php echo(substr($type,0,2))?> . BC</td>
+                                <td><?php echo(substr($type,0,2))?> . C</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -726,17 +871,17 @@ data.map(t=>{
                             j=0;
                             tC.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
+                                        <td>'${i[0]}'</td>
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                if (j==3) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`

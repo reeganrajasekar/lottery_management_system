@@ -4,10 +4,10 @@
 require("./layout/Navbar.php");
 date_default_timezone_set("Asia/Calcutta");
 $t=time();
-if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i",$t)<"45")){
-    header("Location:/member/token.php?err=03pm - Kerala Tickets Closed!");
-    die();
-}
+// if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i",$t)<"45")){
+//     header("Location:/member/token.php?err=03pm - Kerala Tickets Closed!");
+//     die();
+// }
 ?>
 
 <div class="main-panel">
@@ -24,7 +24,8 @@ if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i"
                             <option value="" selected disabled>Choose Type</option>
                             <option value="110">110</option>
                             <option value="70">70</option>
-                            <option value="60">60</option>
+                            <option value="60-3D">60-3D</option>
+                            <option value="60-4D">60-4D</option>
                             <option value="30">30</option>
                             <option value="AB">AB</option>
                             <option value="AC">AC</option>
@@ -66,7 +67,8 @@ if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i"
                                         <option value="" selected disabled>Choose</option>
                                         <option value="110">110</option>
                                         <option value="70">70</option>
-                                        <option value="60">60</option>
+                                        <option value="60-3D">60-3D</option>
+                                        <option value="60-4D">60-4D</option>
                                         <option value="30">30</option>
                                         <option value="AB">AB</option>
                                         <option value="AC">AC</option>
@@ -95,7 +97,7 @@ if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i"
                             sttype = document.getElementById("sttype").value
                             ststart = document.getElementById("ststart").value
                             stend = document.getElementById("stend").value
-                            if (sttype=="110" || sttype=="60") {
+                            if (sttype=="110" || sttype=="60-4D") {
                                 if(ststart.length==4 && stend.length==4){
                                     for(st=ststart;st<=stend;st++){
                                         addlist(sttype,st.toString().padStart(4,"0"),stqty)
@@ -107,7 +109,7 @@ if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i"
                                     alert("Start and End Should be 4 digit!")
                                 }
                             }
-                            if (sttype=="30" || sttype=="70") {
+                            if (sttype=="30" || sttype=="70" || sttype=="60-3D") {
                                 if(ststart.length==3 && stend.length==3){
                                     for(st=ststart;st<=stend;st++){
                                         addlist(sttype,st.toString().padStart(3,"0"),stqty)
@@ -189,7 +191,8 @@ if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i"
                                     <option value="" selected disabled>Choose</option>
                                     <option value="110">110</option>
                                     <option value="70">70</option>
-                                    <option value="60">60</option>
+                                    <option value="60-3D">60-3D</option>
+                                    <option value="60-4D">60-4D</option>
                                     <option value="30">30</option>
                                     <option value="AB">AB</option>
                                     <option value="AC">AC</option>
@@ -264,7 +267,7 @@ if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i"
                             send = Array.from(String(document.getElementById("send").value), num => Number(num))
                             sstep = Array.from(String(document.getElementById("sstep").value), num => Number(num))
                             if(stype && sqty){
-                                if (stype=="110" || stype=="60") {
+                                if (stype=="110" || stype=="60-4D") {
                                     if(sstart.length==4 && send.length==4 && sstep.length==4){
                                         setlist1=[]
                                         setlist2=[]
@@ -375,7 +378,7 @@ if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i"
                                     }else{
                                         alert("Token must be 4 digit")
                                     }
-                                }else if (stype=="70" || stype=="30") {
+                                }else if (stype=="70" || stype=="30" || stype=="60-3D") {
                                     if(sstart.length==3 && send.length==3 && sstep.length==3){
                                         setlist1=[]
                                         setlist2=[]
@@ -543,9 +546,13 @@ if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i"
                                     min=000
                                     max=999
                                     break;
-                                case "60":
+                                case "60-4D":
                                     min=0000
                                     max=9999
+                                    break;
+                                case "60-3D":
+                                    min=000
+                                    max=999
                                     break;
                                 case "30":
                                     min=000
@@ -618,7 +625,7 @@ if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i"
                             onetype = document.getElementById('type').value;
                             oneqty = document.getElementById('qty').value;
                             if(onev && onetype && oneqty){
-                                if (onetype=="30" || onetype=="70") {
+                                if (onetype=="30" || onetype=="70" || onetype=="60-3D") {
                                     if (onev.length==3) {
                                         arr = Array.from(String(onev), num => Number(num))
                                         data=calculateAllCombinations(arr)
@@ -630,7 +637,7 @@ if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i"
                                     }else{
                                         alert("Token Number Must be 3  digit")
                                     }
-                                }else if (onetype=="110" || onetype=="60") {
+                                }else if (onetype=="110" || onetype=="60-4D") {
                                     if (onev.length==4) {
                                         arr = Array.from(String(onev), num => Number(num))
                                         data=calculateAllCombinations(arr)

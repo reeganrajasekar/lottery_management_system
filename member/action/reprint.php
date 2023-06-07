@@ -31,7 +31,7 @@ require("../layout/Header.php") ?>
         <pre id="pre_print" class="bg-white pb-0 mb-0" style="text-align:left !important;">
 ********************************
 Bill No : <script>document.write(<?php echo($id)?>)</script>
-XXXX    : <script>document.write(<?php echo($memberid)?>)</script> - <script>document.write('<?php echo($membername)?>')</script>
+XXXX    : <script>document.write('<?php echo($membername)?>')</script>
 Date    : <script>document.write(moment('<?php echo($date)?>').format("DD/MM/YYYY"))</script>
 Type    : <script>document.write('<?php echo($time)?>')</script>
 --------------------------------
@@ -54,7 +54,7 @@ if($time == "KL-03pm"){
             total+=30*count
             return 30
         }
-        if(id=="60"){
+        if(id=="60-3D" || id=="60-4D" || id=="60"){
             total+=60*count
             return 60
         }
@@ -76,7 +76,7 @@ if($time == "KL-03pm"){
             total+=30*count
             return 30
         }
-        if(id=="60"){
+        if(id=="60-3D" || id=="60-4D" || id=="60"){
             total+=60*count
             return 60
         }
@@ -119,6 +119,7 @@ for (i=0;i<data[0].length;i++) {
     }
 }
 ticketsc=0;
+totalc=0;
 for (i=0;i<=datum.length;i++) {
     if(datum[i][2]-datum[i][1]==0){
         cur=1
@@ -126,7 +127,9 @@ for (i=0;i<=datum.length;i++) {
         cur=((datum[i][2]-datum[i][1])*datum[i][3])+1
     }
     ticketsc+=cur
-    document.write(`<?php echo(substr($time,0,2))?>-${datum[i][0].padEnd(3, ' ')}     ${datum[i][1].padStart(4, ' ')} | ${datum[i][2].padEnd(4, ' ')}     ${cur}`)
+    totalc+=val(datum[i][0],1)*cur
+    console.log(totalc);
+    document.write(`<?php echo(substr($time,0,2))?>-${datum[i][0].padEnd(5, ' ')}   ${datum[i][1].padStart(4, ' ')} | ${datum[i][2].padEnd(4, ' ')}     ${cur}`)
     if(i!=datum.length){
         document.write('\n')
     }
@@ -134,7 +137,7 @@ for (i=0;i<=datum.length;i++) {
 </script>
 --------------------------------
 Qty   : <script>document.write(ticketsc)</script>
-Total : <script>document.write(total)</script>
+Total : <script>document.write(totalc)</script>
 ********************************
         </pre>
     </div>

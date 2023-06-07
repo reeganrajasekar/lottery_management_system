@@ -120,7 +120,8 @@
                         <option value="board">Board</option>
                         <option value="110">110</option>
                         <option value="70">70</option>
-                        <option value="60">60</option>
+                        <option value="60-3D">60-3D</option>
+                        <option value="60-4D">60-4D</option>
                         <option value="30">30</option>
                         <option value="AB">AB</option>
                         <option value="BC">BC</option>
@@ -227,7 +228,8 @@
                         <option value="board">Board</option>
                         <option value="110">110</option>
                         <option value="70">70</option>
-                        <option value="60">60</option>
+                        <option value="60-3D">60-3D</option>
+                        <option value="60-4D">60-4D</option>
                         <option value="30">30</option>
                         <option value="AB">AB</option>
                         <option value="BC">BC</option>
@@ -518,8 +520,12 @@
                             <td id="d3_70"></td>
                         </tr>
                         <tr>
-                            <td>60rs Tokens : </td>
-                            <td id="d3_60"></td>
+                            <td>60-3D rs Tokens : </td>
+                            <td id="d3_603"></td>
+                        </tr>
+                        <tr>
+                            <td>60-4D rs Tokens : </td>
+                            <td id="d3_604"></td>
                         </tr>
                         <tr>
                             <td>30rs Tokens : </td>
@@ -564,15 +570,17 @@
                     </tbody>
                     <script>
                         data3 = <?php echo $data3 ?>;
-                        d3_110=0;d3_70=0;d3_60=0;d3_30=0;d3_AB=0;d3_AC=0;d3_BC=0;d3_A=0;d3_B=0;d3_C=0;d3_q=0;d3_tot=0;
+                        d3_110=0;d3_70=0;d3_603=0;d3_604=0;d3_30=0;d3_AB=0;d3_AC=0;d3_BC=0;d3_A=0;d3_B=0;d3_C=0;d3_q=0;d3_tot=0;
                         data3.map((i)=>{
                             i[0].map((j,index)=>{
                                 if(j=="110"){
                                     d3_110+=parseInt(i[2][index]);
                                 }else if(j=="70"){
                                     d3_70+=parseInt(i[2][index]);
-                                }else if(j=="60"){
-                                    d3_60+=parseInt(i[2][index]);
+                                }else if(j=="60-3D"){
+                                    d3_603+=parseInt(i[2][index]);
+                                }else if(j=="60-4D"){
+                                    d3_604+=parseInt(i[2][index]);
                                 }else if(j=="30"){
                                     d3_30+=parseInt(i[2][index]);
                                 }else if(j=="AB"){
@@ -593,7 +601,8 @@
                         })
                         document.getElementById("d3_110").innerHTML=d3_110
                         document.getElementById("d3_70").innerHTML=d3_70
-                        document.getElementById("d3_60").innerHTML=d3_60
+                        document.getElementById("d3_603").innerHTML=d3_603
+                        document.getElementById("d3_604").innerHTML=d3_604
                         document.getElementById("d3_30").innerHTML=d3_30
                         document.getElementById("d3_AB").innerHTML=d3_AB
                         document.getElementById("d3_AC").innerHTML=d3_AC
