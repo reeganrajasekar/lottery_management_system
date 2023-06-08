@@ -332,6 +332,8 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            t110.sort()
                             t110.map(i=>{
                                 j++;
                                 if (j==0) {
@@ -342,6 +344,7 @@ data.map(t=>{
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
+                                t+=parseInt(i[1])
                                 if (j==3) {
                                     text+=`</tr>`
                                     j=0
@@ -349,7 +352,7 @@ data.map(t=>{
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${t110.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -382,6 +385,8 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            t70.sort()
                             t70.map(i=>{
                                 j++;
                                 if (j==0) {
@@ -392,6 +397,7 @@ data.map(t=>{
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
+                                t+=parseInt(i[1])
                                 if (j==3) {
                                     text+=`</tr>`
                                     j=0
@@ -399,7 +405,7 @@ data.map(t=>{
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${t70.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -431,6 +437,8 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            t60.sort()
                             t60.map(i=>{
                                 j++;
                                 if (j==0) {
@@ -441,6 +449,7 @@ data.map(t=>{
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
+                                t+=parseInt(i[1])
                                 if (j==3) {
                                     text+=`</tr>`
                                     j=0
@@ -448,7 +457,7 @@ data.map(t=>{
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${t60.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -480,6 +489,8 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            t603.sort()
                             t603.map(i=>{
                                 j++;
                                 if (j==0) {
@@ -490,6 +501,7 @@ data.map(t=>{
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
+                                t+=parseInt(i[1])
                                 if (j==3) {
                                     text+=`</tr>`
                                     j=0
@@ -497,7 +509,7 @@ data.map(t=>{
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${t603.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -526,6 +538,7 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
                             t604.sort()
                             t604.map(i=>{
                                 j++;
@@ -537,6 +550,7 @@ data.map(t=>{
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
+                                t+=parseInt(i[1])
                                 if (j==3) {
                                     text+=`</tr>`
                                     j=0
@@ -544,7 +558,7 @@ data.map(t=>{
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${t604.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -576,6 +590,8 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            t30.sort()
                             t30.map(i=>{
                                 j++;
                                 if (j==0) {
@@ -586,6 +602,7 @@ data.map(t=>{
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
+                                t+=parseInt(i[1])
                                 if (j==3) {
                                     text+=`</tr>`
                                     j=0
@@ -593,7 +610,7 @@ data.map(t=>{
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${t30.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -625,6 +642,8 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0
+                            tAB.sort()
                             tAB.map(i=>{
                                 j++;
                                 if (j==0) {
@@ -635,6 +654,7 @@ data.map(t=>{
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
+                                t+=parseInt(i[1])
                                 if (j==3) {
                                     text+=`</tr>`
                                     j=0
@@ -642,7 +662,7 @@ data.map(t=>{
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${tAB.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -673,6 +693,8 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            tBC.sort()
                             tBC.map(i=>{
                                 j++;
                                 if (j==0) {
@@ -683,6 +705,7 @@ data.map(t=>{
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
+                                t+=parseInt(i[1])
                                 if (j==3) {
                                     text+=`</tr>`
                                     j=0
@@ -690,7 +713,7 @@ data.map(t=>{
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${tBC.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -722,6 +745,8 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            tAC.sort()
                             tAC.map(i=>{
                                 j++;
                                 if (j==0) {
@@ -732,6 +757,7 @@ data.map(t=>{
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
+                                t+=parseInt(i[1])
                                 if (j==3) {
                                     text+=`</tr>`
                                     j=0
@@ -739,7 +765,7 @@ data.map(t=>{
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${tAC.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -771,6 +797,8 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            tA.sort()
                             tA.map(i=>{
                                 j++;
                                 if (j==0) {
@@ -781,6 +809,7 @@ data.map(t=>{
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
+                                t+=parseInt(i[1])
                                 if (j==3) {
                                     text+=`</tr>`
                                     j=0
@@ -788,7 +817,7 @@ data.map(t=>{
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${tA.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -820,6 +849,8 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            tB.sort()
                             tB.map(i=>{
                                 j++;
                                 if (j==0) {
@@ -830,6 +861,7 @@ data.map(t=>{
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
+                                t+=parseInt(i[1])
                                 if (j==3) {
                                     text+=`</tr>`
                                     j=0
@@ -837,7 +869,7 @@ data.map(t=>{
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${tB.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -869,6 +901,8 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            tC.sort()
                             tC.map(i=>{
                                 j++;
                                 if (j==0) {
@@ -879,6 +913,7 @@ data.map(t=>{
                                         <td>${i[1]}</td>
                                         <td></td>
                                 `
+                                t+=parseInt(i[1])
                                 if (j==3) {
                                     text+=`</tr>`
                                     j=0
@@ -886,7 +921,7 @@ data.map(t=>{
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${tC.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
