@@ -144,36 +144,12 @@ Total : <script>document.write(totalc)</script>
     </div>
         <br>
         <div class="text-center">
-            <button class="btn btn-success" onclick="BtPrint(document.getElementById('pre_print').innerText)">Print</button>
             <br><br><br>
-            <a class="btn btn-secondary" href="/member/token.php"><- Go Home</a>
+            <a class="btn btn-secondary" href="/admin/tokens.php"><- Go Home</a>
         </div>
     </div>
 </div>
 
-<script>
-        function BtPrint(prn){
-            var S = "#Intent;scheme=rawbt;";
-            var P =  "package=ru.a402d.rawbtprinter;end;";
-            var textEncoded = encodeURI(prn);
-            window.location.href="intent:\x1D\x21\0"+textEncoded+S+P;
-        }
-  
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      if(urlParams.get('err')){
-        document.write("<div id='err' style='position:fixed;bottom:30px; right:30px;background-color:#FF0000;padding:10px;border-radius:10px;box-shadow:2px 2px 4px #aaa;color:white;font-weight:600'>"+urlParams.get('err')+"</div>")
-      }
-      setTimeout(()=>{
-          document.getElementById("err").style.display="none"
-      }, 3000)
-      if(urlParams.get('msg')){
-        document.write("<div id='msg' style='position:fixed;bottom:30px; right:30px;background-color:#4CAF50;padding:10px;border-radius:10px;box-shadow:2px 2px 4px #aaa;color:white;font-weight:600'>"+urlParams.get('msg')+"</div>")
-      }
-      setTimeout(()=>{
-          document.getElementById("msg").style.display="none"
-      }, 3000)
-  </script>
 <style>
     td{
         padding:10px 4px !important;

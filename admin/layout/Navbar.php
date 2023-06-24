@@ -27,6 +27,13 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" href="/admin/tokens.php">
+          <span class="menu-title">Tokens</span>
+          <i class="mdi mdi-history menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="/admin/report.php">
           <span class="menu-title">Report</span>
           <i class="mdi mdi-arrow-down-bold menu-icon"></i>

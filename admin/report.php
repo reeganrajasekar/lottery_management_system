@@ -104,6 +104,7 @@
                         <option value="" selected disabled>Select Type</option>
                         <option value="all">All</option>
                         <option value="board">Board</option>
+                        <option value="three">Three Digit</option>
                         <option value="70">70</option>
                         <option value="30">30</option>
                         <option value="AB">AB</option>
@@ -118,6 +119,9 @@
                         <option value="" selected disabled>Select Type</option>
                         <option value="all">All</option>
                         <option value="board">Board</option>
+                        <option value="tf">All 3&4 Digit</option>
+                        <option value="four">Four Digit</option>
+                        <option value="three">Three Digit</option>
                         <option value="110">110</option>
                         <option value="70">70</option>
                         <option value="60-3D">60-3D</option>
@@ -153,13 +157,7 @@
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <div class="form-floating mb-3">
                     <input required type="date" class="form-control bg-white"  name="from" placeholder="Date">
-                    <label>From Date</label>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-12 col-lg-4">
-                <div class="form-floating mb-3">
-                    <input required type="date" class="form-control bg-white"  name="to" placeholder="Date">
-                    <label>To Date</label>
+                    <label>Date</label>
                 </div>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-4">
@@ -212,6 +210,7 @@
                         <option value="" selected disabled>Select Type</option>
                         <option value="all">All</option>
                         <option value="board">Board</option>
+                        <option value="three">Three Digit</option>
                         <option value="70">70</option>
                         <option value="30">30</option>
                         <option value="AB">AB</option>
@@ -226,6 +225,9 @@
                         <option value="" selected disabled>Select Type</option>
                         <option value="all">All</option>
                         <option value="board">Board</option>
+                        <option value="tf">All 3&4 Digit</option>
+                        <option value="four">Four Digit</option>
+                        <option value="three">Three Digit</option>
                         <option value="110">110</option>
                         <option value="70">70</option>
                         <option value="60-3D">60-3D</option>
@@ -258,7 +260,7 @@
         <?php }else {
 
             $memberid=$_GET["memberid"];
-            $sql = "SELECT * FROM member";
+            $sql = "SELECT * FROM member where id='$memberid'";
             $result = $conn->query($sql);
             while($row = $result->fetch_assoc()){
                 $membername=$row["name"];
@@ -520,11 +522,11 @@
                             <td id="d3_70"></td>
                         </tr>
                         <tr>
-                            <td>60-3D rs Tokens : </td>
+                            <td>60-3D Tokens : </td>
                             <td id="d3_603"></td>
                         </tr>
-                        <tr>
-                            <td>60-4D rs Tokens : </td>
+                      <tr>
+                            <td>60-4D Tokens : </td>
                             <td id="d3_604"></td>
                         </tr>
                         <tr>
@@ -575,6 +577,7 @@
                             i[0].map((j,index)=>{
                                 if(j=="110"){
                                     d3_110+=parseInt(i[2][index]);
+                                  	console.log(i[2])
                                 }else if(j=="70"){
                                     d3_70+=parseInt(i[2][index]);
                                 }else if(j=="60-3D"){
@@ -611,7 +614,7 @@
                         document.getElementById("d3_B").innerHTML=d3_B
                         document.getElementById("d3_C").innerHTML=d3_C
                         document.getElementById("d3_q").innerHTML=d3_q
-                        d3_tot=(d3_110*110)+(d3_70*70)+(d3_60*60)+(d3_30*30)+(d3_AB*12)+(d3_AC*12)+(d3_BC*12)+(d3_A*12)+(d3_B*12)+(d3_C*12);
+                        d3_tot=(d3_110*110)+(d3_70*70)+(d3_603*60)+(d3_604*60)+(d3_30*30)+(d3_AB*13)+(d3_AC*13)+(d3_BC*13)+(d3_A*13)+(d3_B*13)+(d3_C*13);
                         document.getElementById("d3_tot").innerHTML=d3_tot;
                     </script>
                 </table>

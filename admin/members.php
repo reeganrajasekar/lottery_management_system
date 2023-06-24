@@ -70,7 +70,9 @@
                         <td ><?php echo ($row["name"]) ?></td>
                         <td ><?php echo ($row["email"]) ?></td>
                         <td ><?php echo ($row["mobile"]) ?></td>
-                        <td>
+                        <td style="display:flex;justify-content:space-between">
+                            <a href="/admin/action/reset.php?id=<?php echo ($row["id"]) ?>" class="btn btn-secondary">Reset</a>
+                            <span>&ensp;</span>
                             <form action="/admin/action/deactive.php" method="post">
                                 <input type="hidden" value="<?php echo ($row["id"]) ?>" name="id">
                                 <button class="btn btn-danger"><i class="mdi mdi-account-minus menu-icon"></i></button>

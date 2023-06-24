@@ -4,10 +4,10 @@
 require("./layout/Navbar.php");
 date_default_timezone_set("Asia/Calcutta");
 $t=time();
-// if((date("G",$t)=="14" && date("i",$t)>"45" ) || (date("G",$t)=="15" && date("i",$t)<"45")){
-//     header("Location:/member/token.php?err=03pm - Kerala Tickets Closed!");
-//     die();
-// }
+if((date("G",$t)=="14" && date("i",$t)>"55" ) || (date("G",$t)=="15" && date("i",$t)<"30")){
+    header("Location:/member/token.php?err=03pm - Kerala Tickets Closed!");
+    die();
+}
 ?>
 
 <div class="main-panel">
@@ -218,7 +218,7 @@ $t=time();
             </div>
         </form>
         <br>
-        <form action="/member/action/03pm.php" method="post">
+        <form onsubmit="document.getElementById('final').disabled=true;" action="/member/action/03pm.php" method="post">
             <input type="hidden" name="time" value="KL-03pm">
             <table class="table table-striped table-bordered w-100 text-center bg-white">
                 <thead>
@@ -366,11 +366,18 @@ $t=time();
                                         }
     
                                         newloop=0;
+                                      	finalitems=[];
                                         while(newloop<setlist1.length){
-                                            newtok = setlist1[newloop]+""+setlist2[newloop]+""+setlist3[newloop]+""+setlist4[newloop]
-                                            addlist(stype,newtok,sqty)
-                                            newloop++;
+                                            finalitems.push(setlist1[newloop]+""+setlist2[newloop]+""+setlist3[newloop]+""+setlist4[newloop])
+                                          	newloop++;
                                         }
+                                     	finalitems = finalitems.filter((item,index) => finalitems.indexOf(item) === index);
+                                      	if(finalitems.length<10){
+                                          finalitems.shift()
+                                        }
+                                      	finalitems.map((iitem)=>{
+                                            addlist(stype,iitem,sqty)
+                                        })
                                         document.getElementById("send").value=""
                                         document.getElementById("sstart").value=""
                                         document.getElementById("sstep").value=""
@@ -453,11 +460,18 @@ $t=time();
                                         }
     
                                         newloop=0;
+                                      	finalitems=[];
                                         while(newloop<setlist1.length){
-                                            newtok = setlist1[newloop]+""+setlist2[newloop]+""+setlist3[newloop]
-                                            addlist(stype,newtok,sqty)
-                                            newloop++;
+                                            finalitems.push(setlist1[newloop]+""+setlist2[newloop]+""+setlist3[newloop])
+                                          	newloop++;
                                         }
+                                     	finalitems = finalitems.filter((item,index) => finalitems.indexOf(item) === index);
+                                      	if(finalitems.length<10){
+                                          finalitems.shift()
+                                        }
+                                      	finalitems.map((iitem)=>{
+                                            addlist(stype,iitem,sqty)
+                                        })
                                         document.getElementById("send").value=""
                                         document.getElementById("sstart").value=""
                                         document.getElementById("sstep").value=""
@@ -516,11 +530,18 @@ $t=time();
                                         }
     
                                         newloop=0;
+                                      	finalitems=[];
                                         while(newloop<setlist1.length){
-                                            newtok = setlist1[newloop]+""+setlist2[newloop]
-                                            addlist(stype,newtok,sqty)
-                                            newloop++;
+                                            finalitems.push(setlist1[newloop]+""+setlist2[newloop])
+                                          	newloop++;
                                         }
+                                     	finalitems = finalitems.filter((item,index) => finalitems.indexOf(item) === index);
+                                      	if(finalitems.length<10){
+                                          finalitems.shift()
+                                        }
+                                      	finalitems.map((iitem)=>{
+                                            addlist(stype,iitem,sqty)
+                                        })
                                         document.getElementById("send").value=""
                                         document.getElementById("sstart").value=""
                                         document.getElementById("sstep").value=""
@@ -661,7 +682,7 @@ $t=time();
             </table>
             <br>
             <div  class="mb-4 text-end">
-                <button class="btn btn-primary">Next</button>
+                <button id="final" class="btn btn-primary">Next</button>
             </div>
         </form>
     </div>

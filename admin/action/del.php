@@ -4,10 +4,9 @@ require("../layout/Header.php");
 require("../layout/Navbar.php");
 try {
     $from = $_POST["from"];
-    $to = $_POST["to"];
     $memberid = $_POST["memberid"];
     $type = $_POST["type"];
-    $sql = "SELECT * FROM token WHERE data='NOT' AND time='$type' AND memberid='$memberid' AND reg_date>'$from' AND reg_date<'$to'";
+    $sql = "SELECT * FROM token WHERE data='NOT' AND time='$type' AND memberid='$memberid' AND DATE(reg_date)='$from'";
     $result = $conn->query($sql);
     $data=[];
     while($row = $result->fetch_assoc()){
@@ -25,6 +24,8 @@ data=<?php echo(json_encode($data))?>;
 t110=[]
 t70=[]
 t60=[]
+t603=[]
+t604=[]
 t30=[]
 tAB=[]
 tAC=[]
@@ -41,7 +42,7 @@ data.map(t=>{
                 re=0;
                 for(m=0;t110.length>m;m++){
                     if(t110[m][0]==token[1][loop]){
-                        t110[m][1]++;
+                        t110[m][1]=parseInt(t110[m][1])+parseInt(token[2][loop]);
                         re=0
                         break;
                     }else{
@@ -59,7 +60,7 @@ data.map(t=>{
                 re=0;
                 for(m=0;t70.length>m;m++){
                     if(t70[m][0]==token[1][loop]){
-                        t70[m][1]++;
+                        t70[m][1]=parseInt(t70[m][1])+parseInt(token[2][loop]);
                         re=0
                         break;
                     }else{
@@ -77,7 +78,7 @@ data.map(t=>{
                 re=0;
                 for(m=0;t60.length>m;m++){
                     if(t60[m][0]==token[1][loop]){
-                        t60[m][1]++;
+                        t60[m][1]=parseInt(t60[m][1])+parseInt(token[2][loop]);
                         re=0
                         break;
                     }else{
@@ -90,12 +91,48 @@ data.map(t=>{
             }else{
                 t60.push([token[1][loop],token[2][loop]])
             }
+        }else if(i=="60-3D"){
+            if(t603.length>0){
+                re=0;
+                for(m=0;t603.length>m;m++){
+                    if(t603[m][0]==token[1][loop]){
+                        t603[m][1]=parseInt(t603[m][1])+parseInt(token[2][loop]);
+                        re=0
+                        break;
+                    }else{
+                        re=1
+                    }
+                }
+                if(re==1){
+                    t603.push([token[1][loop],token[2][loop]])
+                }
+            }else{
+                t603.push([token[1][loop],token[2][loop]])
+            }
+        }else if(i=="60-4D"){
+            if(t604.length>0){
+                re=0;
+                for(m=0;t604.length>m;m++){
+                    if(t604[m][0]==token[1][loop]){
+                        t604[m][1]=parseInt(t604[m][1])+parseInt(token[2][loop]);
+                        re=0
+                        break;
+                    }else{
+                        re=1
+                    }
+                }
+                if(re==1){
+                    t604.push([token[1][loop],token[2][loop]])
+                }
+            }else{
+                t604.push([token[1][loop],token[2][loop]])
+            }
         }else if(i=="30"){
             if(t30.length>0){
                 re=0;
                 for(m=0;t30.length>m;m++){
                     if(t30[m][0]==token[1][loop]){
-                        t30[m][1]++;
+                        t30[m][1]=parseInt(t30[m][1])+parseInt(token[2][loop]);
                         re=0
                         break;
                     }else{
@@ -113,7 +150,7 @@ data.map(t=>{
                 re=0;
                 for(m=0;tAB.length>m;m++){
                     if(tAB[m][0]==token[1][loop]){
-                        tAB[m][1]++;
+                        tAB[m][1]=parseInt(tAB[m][1])+parseInt(token[2][loop]);
                         re=0
                         break;
                     }else{
@@ -131,7 +168,7 @@ data.map(t=>{
                 re=0;
                 for(m=0;tAC.length>m;m++){
                     if(tAC[m][0]==token[1][loop]){
-                        tAC[m][1]++;
+                        tAC[m][1]=parseInt(tAC[m][1])+parseInt(token[2][loop]);
                         re=0
                         break;
                     }else{
@@ -149,7 +186,7 @@ data.map(t=>{
                 re=0;
                 for(m=0;tBC.length>m;m++){
                     if(tBC[m][0]==token[1][loop]){
-                        tBC[m][1]++;
+                        tBC[m][1]=parseInt(tBC[m][1])+parseInt(token[2][loop]);
                         re=0
                         break;
                     }else{
@@ -164,10 +201,11 @@ data.map(t=>{
             }
         }else if(i=="A"){
             if(tA.length>0){
+              	
                 re=0;
                 for(m=0;tA.length>m;m++){
                     if(tA[m][0]==token[1][loop]){
-                        tA[m][1]++;
+                        tA[m][1]=parseInt(tA[m][1])+parseInt(token[2][loop]);
                         re=0
                         break;
                     }else{
@@ -180,12 +218,13 @@ data.map(t=>{
             }else{
                 tA.push([token[1][loop],token[2][loop]])
             }
+          	console.log(token[1][loop]+"_"+token[2][loop])
         }else if(i=="B"){
             if(tB.length>0){
                 re=0;
                 for(m=0;tB.length>m;m++){
                     if(tB[m][0]==token[1][loop]){
-                        tB[m][1]++;
+                        tB[m][1]=parseInt(tB[m][1])+parseInt(token[2][loop]);
                         re=0
                         break;
                     }else{
@@ -203,7 +242,7 @@ data.map(t=>{
                 re=0;
                 for(m=0;tC.length>m;m++){
                     if(tC[m][0]==token[1][loop]){
-                        tC[m][1]++;
+                        tC[m][1]=parseInt(tC[m][1])+parseInt(token[2][loop]);
                         re=0
                         break;
                     }else{
@@ -226,38 +265,55 @@ data.map(t=>{
 <div class="main-panel">
     <div class="content-wrapper">
         <br>
-        <h4 class="text-secondary mb-2">Tickets Report:</h4>
+        <h4 class="text-secondary mb-2">Deleted Tickets Report:</h4>
         <div class="text-center">
             <button type="button" class="btn btn-primary" onclick="tableToCSV()">
                 download CSV
             </button>
         </div>
         <br>
-        <div class="table-responsive" style="display:none">
-            <table class="table table-striped table-bordered ">
+        <div class="table-responsive" >
+            <table class="table table-striped table-bordered " style="display:none;">
                 <tbody>
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>Deleted Tokens Report</td>
+                        <td>Deleted Entry Report</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>From : </td>
+                        <td><?php echo($from)?></td>
+                        <td></td>
+                        <td>To : </td>
+                        <td><?php echo($to)?></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Name :</td>
+                        <td><?php echo($membername)?></td>
+                        <td></td>
+                        <td>ID</td>
+                        <td><?php echo($memberid)?></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>From : <?php echo($from)?> - To : <?php echo($to)?></td>
-                    </tr>
-                    <tr>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><?php echo($membername)?> - <?php echo($memberid)?></td>
-                    </tr>
-                    <tr>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -265,7 +321,7 @@ data.map(t=>{
                     </tr>
 
                     <!-- 110 -->
-                    <?php if($_POST["token"]=="110" || $_POST["token"]=="all"){ ?>
+                    <?php if($_POST["token"]=="110" || $_POST["token"]=="all" || $_POST["token"]=="four"|| $_POST["token"]=="tf"){ ?>
                     <script>
                         if(t110.length > 0){
                             text=`
@@ -277,24 +333,26 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            t110.sort()
                             t110.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
-                                        <td>${i[1]}</td>
+                                        <td>.${i[0]} __ ${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                t+=parseInt(i[1])
+                                if (j==5) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${t110.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -312,7 +370,7 @@ data.map(t=>{
                     
                     <?php 
                     }
-                    if($_POST["token"]=="70" || $_POST["token"]=="all"){ 
+                    if($_POST["token"]=="70" || $_POST["token"]=="all"|| $_POST["token"]=="three" || $_POST["token"]=="tf"){ 
                     ?>
 
                     <!-- 70 -->
@@ -327,24 +385,26 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            t70.sort()
                             t70.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
-                                        <td>${i[1]}</td>
+                                        <td>.${i[0]} __ ${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                t+=parseInt(i[1])
+                                if (j==5) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${t70.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -362,7 +422,7 @@ data.map(t=>{
 
                     <?php 
                     }
-                    if($_POST["token"]=="60" || $_POST["token"]=="all"){ 
+                    if($_POST["token"]=="60" || $_POST["token"]=="all"|| $_POST["token"]=="four" || $_POST["token"]=="tf"){ 
                     ?>
                     <!-- 60 -->
                     <script>
@@ -376,24 +436,26 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            t60.sort()
                             t60.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
-                                        <td>${i[1]}</td>
+                                        <td>.${i[0]} __ ${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                t+=parseInt(i[1])
+                                if (j==5) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${t60.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -411,7 +473,106 @@ data.map(t=>{
 
                     <?php 
                     }
-                    if($_POST["token"]=="30" || $_POST["token"]=="all"){ 
+                    if($_POST["token"]=="60-3D" || $_POST["token"]=="all"|| $_POST["token"]=="three" || $_POST["token"]=="tf"){ 
+                    ?>
+                    <!-- 60 -->
+                    <script>
+                        if(t603.length > 0){
+                            text=`
+                            <tr>
+                                <td><?php echo(substr($type,0,2))?> . 60-3D</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            `
+                            j=0;
+                            t=0;
+                            t603.sort()
+                            t603.map(i=>{
+                                j++;
+                                if (j==0) {
+                                    text+=`<tr>`
+                                }
+                                text+=`
+                                        <td>.${i[0]} __ ${i[1]}</td>
+                                        <td></td>
+                                `
+                                t+=parseInt(i[1])
+                                if (j==5) {
+                                    text+=`</tr>`
+                                    j=0
+                                }
+                            })
+                            text+=`
+                            <tr>
+                                <td>Total : ${t}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            `
+                            document.write(text)
+                        }
+                    </script>
+
+                    <?php 
+                    }
+                    if($_POST["token"]=="60-4D" || $_POST["token"]=="all"|| $_POST["token"]=="four"|| $_POST["token"]=="tf"){ 
+                    ?>
+                    <!-- 60-4D -->
+                    <script>
+                        if(t604.length > 0){
+                            text=`
+                            <tr>
+                                <td><?php echo(substr($type,0,2))?> . 60-4D</td>
+                            </tr>
+                            `
+                            j=0;
+                            t=0;
+                            t604.sort()
+                            t604.map(i=>{
+                                j++;
+                                if (j==0) {
+                                    text+=`<tr>`
+                                }
+                                text+=`
+                                        <td>.${i[0]} __ ${i[1]}</td>
+                                        <td></td>
+                                `
+                                t+=parseInt(i[1])
+                                if (j==5) {
+                                    text+=`</tr>`
+                                    j=0
+                                }
+                            })
+                            text+=`
+                            <tr>
+                                <td>Total : ${t}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            `
+                            document.write(text)
+                        }
+                    </script>
+
+                    <?php 
+                    }
+                    if($_POST["token"]=="30" || $_POST["token"]=="all"|| $_POST["token"]=="three"|| $_POST["token"]=="tf"){ 
                     ?>
                     <!-- 30 -->
                     <script>
@@ -425,24 +586,26 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            t30.sort()
                             t30.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
-                                        <td>${i[1]}</td>
+                                        <td>.${i[0]} __ ${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                t+=parseInt(i[1])
+                                if (j==5) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${t30.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -474,24 +637,26 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0
+                            tAB.sort()
                             tAB.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
-                                        <td>${i[1]}</td>
+                                        <td>.${i[0]} __ ${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                t+=parseInt(i[1])
+                                if (j==5) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${tAB.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -508,7 +673,7 @@ data.map(t=>{
                     </script>
                     <?php 
                     }
-                    if($_POST["token"]=="BC" || $_POST["token"]=="all"|| $_POST["token"]=="board"){ 
+                    if($_POST["token"]=="BC" || $_POST["token"]=="all" || $_POST["token"]=="board"){ 
                     ?>
                     <!-- BC -->
                     <script>
@@ -522,24 +687,26 @@ data.map(t=>{
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            tBC.sort()
                             tBC.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
-                                        <td>${i[1]}</td>
+                                        <td>.${i[0]} __ ${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                t+=parseInt(i[1])
+                                if (j==5) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${tBC.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -564,31 +731,33 @@ data.map(t=>{
                         if(tAC.length > 0){
                             text=`
                             <tr>
-                                <td><?php echo(substr($type,0,2))?> . BC</td>
+                                <td><?php echo(substr($type,0,2))?> . AC</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            tAC.sort()
                             tAC.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
-                                        <td>${i[1]}</td>
+                                        <td>.${i[0]} __ ${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                t+=parseInt(i[1])
+                                if (j==5) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${tAC.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -613,31 +782,33 @@ data.map(t=>{
                         if(tA.length > 0){
                             text=`
                             <tr>
-                                <td><?php echo(substr($type,0,2))?> . BC</td>
+                                <td><?php echo(substr($type,0,2))?> . A</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            tA.sort()
                             tA.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
-                                        <td>${i[1]}</td>
+                                        <td>.${i[0]} __ ${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                t+=parseInt(i[1])
+                                if (j==5) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${tA.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -662,31 +833,33 @@ data.map(t=>{
                         if(tB.length > 0){
                             text=`
                             <tr>
-                                <td><?php echo(substr($type,0,2))?> . BC</td>
+                                <td><?php echo(substr($type,0,2))?> . B</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            tB.sort()
                             tB.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
-                                        <td>${i[1]}</td>
+                                        <td>.${i[0]} __ ${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                t+=parseInt(i[1])
+                                if (j==5) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${tB.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -711,31 +884,33 @@ data.map(t=>{
                         if(tC.length > 0){
                             text=`
                             <tr>
-                                <td><?php echo(substr($type,0,2))?> . BC</td>
+                                <td><?php echo(substr($type,0,2))?> . C</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             `
                             j=0;
+                            t=0;
+                            tC.sort()
                             tC.map(i=>{
                                 j++;
-                                if (j%2!=0) {
+                                if (j==0) {
                                     text+=`<tr>`
                                 }
                                 text+=`
-                                        <td>${i[0]}</td>
-                                        <td>-${i[0]}</td>
-                                        <td>${i[1]}</td>
+                                        <td>.${i[0]} __ ${i[1]}</td>
                                         <td></td>
                                 `
-                                if (j%2==0) {
+                                t+=parseInt(i[1])
+                                if (j==5) {
                                     text+=`</tr>`
+                                    j=0
                                 }
                             })
                             text+=`
                             <tr>
-                                <td>Total : ${tC.length}</td>
+                                <td>Total : ${t}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>

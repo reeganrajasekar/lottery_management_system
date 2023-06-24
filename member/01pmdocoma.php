@@ -195,7 +195,7 @@ if((date("G",$t)=="13" && date("i",$t)>"10" ) || (date("G",$t)=="14" && date("i"
             </div>
         </form>
         <br>
-        <form action="/member/action/01pm.php" method="post">
+        <form onsubmit="document.getElementById('final').disabled=true;" action="/member/action/01pm.php" method="post">
             <input type="hidden" name="time" value="DO-01pm">
             <table class="table table-striped table-bordered w-100 text-center bg-white">
                 <thead>
@@ -318,11 +318,18 @@ if((date("G",$t)=="13" && date("i",$t)>"10" ) || (date("G",$t)=="14" && date("i"
                                             }
                                         }
                                         newloop=0;
+                                      	finalitems=[];
                                         while(newloop<setlist1.length){
-                                            newtok = setlist1[newloop]+""+setlist2[newloop]+""+setlist3[newloop]
-                                            addlist(stype,newtok,sqty)
-                                            newloop++;
+                                            finalitems.push(setlist1[newloop]+""+setlist2[newloop]+""+setlist3[newloop])
+                                          	newloop++;
                                         }
+                                     	finalitems = finalitems.filter((item,index) => finalitems.indexOf(item) === index);
+                                      	if(finalitems.length<10){
+                                          finalitems.shift()
+                                        }
+                                      	finalitems.map((iitem)=>{
+                                            addlist(stype,iitem,sqty)
+                                        })
                                         document.getElementById("send").value=""
                                         document.getElementById("sstart").value=""
                                         document.getElementById("sstep").value=""
@@ -380,11 +387,18 @@ if((date("G",$t)=="13" && date("i",$t)>"10" ) || (date("G",$t)=="14" && date("i"
                                             }
                                         }
                                         newloop=0;
+                                      	finalitems=[];
                                         while(newloop<setlist1.length){
-                                            newtok = setlist1[newloop]+""+setlist2[newloop]
-                                            addlist(stype,newtok,sqty)
-                                            newloop++;
+                                            finalitems.push(setlist1[newloop]+""+setlist2[newloop])
+                                          	newloop++;
                                         }
+                                     	finalitems = finalitems.filter((item,index) => finalitems.indexOf(item) === index);
+                                      	if(finalitems.length<10){
+                                          finalitems.shift()
+                                        }
+                                      	finalitems.map((iitem)=>{
+                                            addlist(stype,iitem,sqty)
+                                        })
                                         document.getElementById("send").value=""
                                         document.getElementById("sstart").value=""
                                         document.getElementById("sstep").value=""
@@ -493,7 +507,7 @@ if((date("G",$t)=="13" && date("i",$t)>"10" ) || (date("G",$t)=="14" && date("i"
             </table>
             <br>
             <div  class="mb-4 text-end">
-                <button class="btn btn-primary">Next</button>
+                <button id="final" class="btn btn-primary">Next</button>
             </div>
         </form>
     </div>

@@ -15,7 +15,7 @@
 
                 $memberid = $_SESSION["memberid"];
                 $results_per_page = 15;   
-                $query = "SELECT id FROM token WHERE data='OK' AND memberid='$memberid' AND DATE(reg_date)='$newdate'";  
+                $query = "SELECT id FROM token WHERE data='OK' AND memberid='$memberid' AND DATE(reg_date)>='$newdate'";  
                 $result = mysqli_query($conn, $query);  
                 $number_of_result = mysqli_num_rows($result);  
                 $number_of_page = ceil ($number_of_result / $results_per_page);  
@@ -28,22 +28,18 @@
     
                 $page_first_result = ($page-1) * $results_per_page; 
 
-                $sql = "SELECT * FROM token WHERE data='OK' AND memberid='$memberid' AND DATE(reg_date)='$newdate' ORDER BY id DESC LIMIT " . $page_first_result . ',' . $results_per_page;
+                $sql = "SELECT * FROM token WHERE data='OK' AND memberid='$memberid' AND DATE(reg_date)>='$newdate' ORDER BY id DESC LIMIT " . $page_first_result . ',' . $results_per_page;
                 $result = $conn->query($sql);
                 while ($row = $result->fetch_assoc()) {
             ?>
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-3">
                     <div class="card w-100">
                         <div class="card-body">
-                            <h5 class="card-title">Bill No : <?php echo($row["id"])?></h5>
+                            <h5 class="card-title">Bill No : <?php echo($row["bill"])?></h5>
                             <p class="card-text"><span class="text-muted">Type :</span> <?php echo($row["time"])?></p>
-                            <p class="card-text"><span class="text-muted">Date :</span> <script>document.write(moment('<?php echo($row["reg_date"])?>').format("DD/MM/YYYY hh:mm A"))</script></p>
-                            <div style="display:flex;justify-content:space-between" class="w-100">
+                            <p class="card-text"><span class="text-muted">Date :</span> <script>document.write(moment('<?php echo($row["reg_date"])?>').format("DD/MM/YYYY"))</script></p>
+                            <div style="display:flex;justify-content:flex-end" class="w-100">
                                 <a target="_blank" href="/member/action/reprint.php?id=<?php echo($row["id"])?>" class="btn btn-primary">Print</a>
-                                <form action="/member/action/delete.php" onsubmit="return confirm('Are you sure? if you delete this we cannot recover.')" method="post">
-                                    <input type="hidden" name="id" value="<?php echo($row["id"])?>">
-                                    <button class="btn btn-danger"><i class="mdi mdi-delete menu-icon"></i></button>
-                                </form>
                             </div>
                         </div>
                     </div>

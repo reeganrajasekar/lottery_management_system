@@ -18,6 +18,7 @@ if ($conn->query($sql) === TRUE) {
 
 $sql = "CREATE TABLE IF NOT EXISTS token (
     id INT(6) AUTO_INCREMENT PRIMARY KEY,
+    bill INT(6),
     time VARCHAR(125) NOT NULL,
     token json NOT NULL,
     memberid INT(6) NOT NULL,
@@ -41,5 +42,13 @@ if ($conn->query($sql) === TRUE) {
     echo "Table Admin created successfully<br>";
 } else {
     echo "Error creating table: admin";
+}
+
+
+$sql = "INSERT INTO admin (email,password) VALUES ('admin@gmail.com','admin')";
+if ($conn->query($sql) === TRUE) {
+    echo "Table Admin Recorded successfully<br>";
+} else {
+    echo "Error Inserting table: admin";
 }
 ?>

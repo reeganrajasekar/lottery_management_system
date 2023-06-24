@@ -51,7 +51,7 @@
                     <?php
                         $memberid = $_SESSION["memberid"];
                         $date = $_GET["date"];
-                        $sql = "SELECT token FROM token WHERE memberid='$memberid' AND time='DO-01pm' AND DATE(reg_date)='$date'";
+                        $sql = "SELECT token FROM token WHERE  data='OK' AND memberid='$memberid' AND time='DO-01pm' AND DATE(reg_date)='$date'";
                         $result = $conn->query($sql);
                         $data = "[";
                         while ($row = $result->fetch_assoc()) {
@@ -147,7 +147,7 @@
 
                 <table style="font-size: 13px">
                     <?php
-                        $sql = "SELECT token FROM token WHERE memberid='$memberid' AND time='BU-02pm' AND DATE(reg_date)='$date'";
+                        $sql = "SELECT token FROM token WHERE data='OK' AND memberid='$memberid' AND time='BU-02pm' AND DATE(reg_date)='$date'";
                         $result = $conn->query($sql);
                         $data2 = "[";
                         while ($row = $result->fetch_assoc()) {
@@ -250,7 +250,7 @@
                 /n
                 <table style="font-size: 14px;">
                     <?php
-                        $sql = "SELECT token FROM token WHERE memberid='$memberid' AND time='KL-03pm' AND DATE(reg_date)='$date'";
+                        $sql = "SELECT token FROM token WHERE data='OK' AND memberid='$memberid' AND time='KL-03pm' AND DATE(reg_date)='$date'";
                         $result = $conn->query($sql);
                         $data3 = "[";
                         while ($row = $result->fetch_assoc()) {
@@ -277,8 +277,12 @@
                             <td id="d3_70"></td>
                         </tr>
                         <tr>
-                            <td>60rs Tokens : </td>
-                            <td id="d3_60"></td>
+                            <td>60-3D Tokens : </td>
+                            <td id="d3_603"></td>
+                        </tr>
+                      <tr>
+                            <td>60-4D Tokens : </td>
+                            <td id="d3_604"></td>
                         </tr>
                         <tr>
                             <td>30rs Tokens : </td>
@@ -323,15 +327,18 @@
                     </tbody>
                     <script>
                         data3 = <?php echo $data3 ?>;
-                        d3_110=0;d3_70=0;d3_60=0;d3_30=0;d3_AB=0;d3_AC=0;d3_BC=0;d3_A=0;d3_B=0;d3_C=0;d3_q=0;d3_tot=0;
+                        d3_110=0;d3_70=0;d3_603=0;d3_604=0;d3_30=0;d3_AB=0;d3_AC=0;d3_BC=0;d3_A=0;d3_B=0;d3_C=0;d3_q=0;d3_tot=0;
                         data3.map((i)=>{
                             i[0].map((j,index)=>{
                                 if(j=="110"){
                                     d3_110+=parseInt(i[2][index]);
+                                  	console.log(i[2])
                                 }else if(j=="70"){
                                     d3_70+=parseInt(i[2][index]);
-                                }else if(j=="60"){
-                                    d3_60+=parseInt(i[2][index]);
+                                }else if(j=="60-3D"){
+                                    d3_603+=parseInt(i[2][index]);
+                                }else if(j=="60-4D"){
+                                    d3_604+=parseInt(i[2][index]);
                                 }else if(j=="30"){
                                     d3_30+=parseInt(i[2][index]);
                                 }else if(j=="AB"){
@@ -352,7 +359,8 @@
                         })
                         document.getElementById("d3_110").innerHTML=d3_110
                         document.getElementById("d3_70").innerHTML=d3_70
-                        document.getElementById("d3_60").innerHTML=d3_60
+                        document.getElementById("d3_603").innerHTML=d3_603
+                        document.getElementById("d3_604").innerHTML=d3_604
                         document.getElementById("d3_30").innerHTML=d3_30
                         document.getElementById("d3_AB").innerHTML=d3_AB
                         document.getElementById("d3_AC").innerHTML=d3_AC
@@ -361,14 +369,14 @@
                         document.getElementById("d3_B").innerHTML=d3_B
                         document.getElementById("d3_C").innerHTML=d3_C
                         document.getElementById("d3_q").innerHTML=d3_q
-                        d3_tot=(d3_110*110)+(d3_70*70)+(d3_60*60)+(d3_30*30)+(d3_AB*12)+(d3_AC*12)+(d3_BC*12)+(d3_A*12)+(d3_B*12)+(d3_C*12);
+                        d3_tot=(d3_110*110)+(d3_70*70)+(d3_603*60)+(d3_604*60)+(d3_30*30)+(d3_AB*13)+(d3_AC*13)+(d3_BC*13)+(d3_A*13)+(d3_B*13)+(d3_C*13);
                         document.getElementById("d3_tot").innerHTML=d3_tot;
                     </script>
                 </table>
 
                 <table style="font-size: 13px;">
                     <?php
-                        $sql = "SELECT token FROM token WHERE memberid='$memberid' AND time='BU-07pm' AND DATE(reg_date)='$date'";
+                        $sql = "SELECT token FROM token WHERE data='OK' AND memberid='$memberid' AND time='BU-07pm' AND DATE(reg_date)='$date'";
                         $result = $conn->query($sql);
                         $data7 = "[";
                         while ($row = $result->fetch_assoc()) {
@@ -472,7 +480,7 @@
                 /n
                 <table style="font-size: 14px;">
                     <?php
-                        $sql = "SELECT token FROM token WHERE memberid='$memberid' AND time='DO-08pm' AND DATE(reg_date)='$date'";
+                        $sql = "SELECT token FROM token WHERE data='OK' AND memberid='$memberid' AND time='DO-08pm' AND DATE(reg_date)='$date'";
                         $result = $conn->query($sql);
                         $data8 = "[";
                         while ($row = $result->fetch_assoc()) {

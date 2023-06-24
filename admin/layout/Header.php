@@ -16,7 +16,7 @@ if($_SESSION["admin"]=="u6rv9tb8pq89u"){
     <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="/assets/css/style.css">
-    
+    <script src="/assets/js/moment.js"></script>
     <script src="/assets/js/jspdf.min.js"></script>
   </head>
   <body>
