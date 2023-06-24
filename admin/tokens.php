@@ -32,13 +32,6 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-4">
-                <div class="form-floating mb-3">
-                    <input required type="number" class="form-control bg-white"  name="bill" placeholder="Bill No">
-                    <label>Bill No</label>
-                </div>
-            </div>
-            <div class="col-sm-0 col-md-0 col-lg-4"></div>
-            <div class="col-sm-12 col-md-12 col-lg-4">
                 <div class="text-center">
                     <button class="btn btn-primary h-100 mt-2">Search</button>
                 </div>
@@ -50,13 +43,25 @@
                 <?php
                     $memberid = $_GET["memberid"];
                     $date = $_GET["date"];
-                    $bill = $_GET["bill"];
-                    
-                    $sql = "SELECT * FROM token WHERE data='OK' AND memberid='$memberid' AND DATE(reg_date)='$date' AND bill='$bill';";
+                    echo("<h4 class='text-secondary mb-3'>Result From : $memberid _ $date</h4>");
+                    $results_per_page = 15;   
+                    $query = "SELECT id FROM token WHERE data='OK' AND memberid='$memberid' AND DATE(reg_date)='$date'";  
+                    $result = mysqli_query($conn, $query);  
+                    $number_of_result = mysqli_num_rows($result);  
+                    $number_of_page = ceil ($number_of_result / $results_per_page);  
+        
+                    if (!isset ($_GET['page']) ) {  
+                        $page = 1;  
+                    } else {  
+                        $page = $_GET['page'];  
+                    } 
+        
+                    $page_first_result = ($page-1) * $results_per_page;
+
+                    $sql = "SELECT * FROM token WHERE data='OK' AND memberid='$memberid' AND DATE(reg_date)='$date' ORDER BY id DESC LIMIT " . $page_first_result . ',' . $results_per_page;
                     $result = $conn->query($sql);
                     while ($row = $result->fetch_assoc()) {
                 ?>
-                    <div class="col-sm-0 col-md-0 col-lg-4 col-xl-4"></div>
                     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-3">
                         <div class="card w-100">
                             <div class="card-body">
@@ -84,6 +89,17 @@
             <?php
             }
             ?>
+            <p style="text-align:center;line-height:3.5;font-size:16px">
+                <?php 
+                for($page = 1; $page<= $number_of_page; $page++) { 
+                    if($page==$_GET['page']){
+                        echo '<a class="btn-primary" style="margin:5px;padding:10px;border-radius:5px;font-weight:600;color:#fff;text-decoration:none" href = "?page=' . $page . '&memberid='.$memberid.'&date='.$date.'">' . $page . ' </a>';  
+                    }else{
+                        echo '<a style="margin:5px;padding:8px;border-radius:5px;border:1px solid #aaa;color:#444;text-decoration:none" href = "?page=' . $page . '&memberid='.$memberid.'&date='.$date.'">' . $page . ' </a>';  
+                    }
+                }  
+                ?>
+            </p>
         <?php } ?>
 
     </div>
