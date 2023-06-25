@@ -9,9 +9,9 @@ if(isset($_SESSION["memberid"])){
 }
 
 $servername = "localhost";
-$username = "lottery1";
+$username = "root";
 $password = "trysomething";
-$db_name = "lottery1";
+$db_name = "lottery";
 $conn = new mysqli($servername, $username, $password,$db_name);
 
 if ($conn->connect_error) {

@@ -671,10 +671,6 @@
                             <td id="d7_C"></td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
                             <th>Total Qty </th>
                             <th id="d7_q"></th>
                         </tr>

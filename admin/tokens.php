@@ -70,7 +70,7 @@
                                 <p class="card-text"><span class="text-muted">Date :</span> <script>document.write(moment('<?php echo($row["reg_date"])?>').format("DD/MM/YYYY"))</script></p>
                                 <div style="display:flex;justify-content:space-between" class="w-100">
                                     <a target="_blank" href="/admin/action/reprint.php?id=<?php echo($row["id"])?>" class="btn btn-primary">View</a>
-                                    <form action="/member/action/delete.php" onsubmit="return confirm('Are you sure? if you delete this we cannot recover.')" method="post">
+                                    <form action="/admin/action/delete.php" onsubmit="return confirm('Are you sure? if you delete this we cannot recover.')" method="post">
                                         <input type="hidden" name="id" value="<?php echo($row["id"])?>">
                                         <button class="btn btn-danger"><i class="mdi mdi-delete menu-icon"></i></button>
                                     </form>

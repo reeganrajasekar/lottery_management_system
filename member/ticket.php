@@ -31,13 +31,21 @@
                 $sql = "SELECT * FROM token WHERE data='OK' AND memberid='$memberid' AND DATE(reg_date)>='$newdate' ORDER BY id DESC LIMIT " . $page_first_result . ',' . $results_per_page;
                 $result = $conn->query($sql);
                 while ($row = $result->fetch_assoc()) {
+                    $datec = strtotime($row["reg_date"]);
+                    $datehour = date( 'H', $datec );
+                    $datedate = date( 'd', $datec );
+                    if($row["time"]=="DO-01pm" && $datedate==strval(date_format($date,'d')) && $datehour<14){continue;}
+                    if($row["time"]=="BU-02pm" && $datedate==strval(date_format($date,'d')) && $datehour<15){continue;}
+                    if($row["time"]=="KL-03pm" && $datedate==strval(date_format($date,'d')) && $datehour<16){continue;}
+                    if($row["time"]=="BU-07pm" && $datedate==strval(date_format($date,'d')) && $datehour<20){continue;}
+                    if($row["time"]=="DO-08pm" && $datedate==strval(date_format($date,'d')) && $datehour<21){continue;}
             ?>
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-3">
                     <div class="card w-100">
                         <div class="card-body">
                             <h5 class="card-title">Bill No : <?php echo($row["bill"])?></h5>
                             <p class="card-text"><span class="text-muted">Type :</span> <?php echo($row["time"])?></p>
-                            <p class="card-text"><span class="text-muted">Date :</span> <script>document.write(moment('<?php echo($row["reg_date"])?>').format("DD/MM/YYYY"))</script></p>
+                            <p class="card-text"><span class="text-muted">Date :</span> <script>document.write(moment('<?php echo($row["reg_date"])?>').format("DD/MM/YYYY HH:mm A"))</script></p>
                             <div style="display:flex;justify-content:flex-end" class="w-100">
                                 <a target="_blank" href="/member/action/reprint.php?id=<?php echo($row["id"])?>" class="btn btn-primary">Print</a>
                             </div>

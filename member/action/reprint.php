@@ -33,7 +33,7 @@ require("../layout/Header.php") ?>
 ********************************
 Bill No : <script>document.write(<?php echo($bill)?>)</script>
 XXXX    : <script>document.write('<?php echo($membername)?>')</script>
-Date    : <script>document.write(moment('<?php echo($date)?>').format("DD/MM/YYYY"))</script>
+Date    : <script>document.write(moment('<?php echo($date)?>').format("DD/MM/YYYY hh:mm A"))</script>
 Type    : <script>document.write('<?php echo($time)?>')</script>
 --------------------------------
  Ticket  |    Token     |  Qty
